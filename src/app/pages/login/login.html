@@ -1,0 +1,46 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <div class="login-logo">
+      🌿 <span>Forms // CUSTOMER </span>
+    </div>
+
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        
+        <label for="Indentifiant">Identifiant</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="votre@email.com"
+          [class.input-error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        />
+        <span class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          Email invalide
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          [class.input-error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        />
+        <span class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Mot de passe obligatoire
+        </span>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">
+        Se connecter
+      </button>
+
+    </form>
+  </div>
+</div>
