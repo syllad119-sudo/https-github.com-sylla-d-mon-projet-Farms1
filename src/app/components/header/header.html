@@ -1,15 +1,25 @@
 <div class="header-container">
   <header class="header">
-    <div class="logo">FARMS DIGITAL</div>
-
-    <div class="lang">
-      FR ⌄
-
-      <div class="lang-menu">
-        <button>EN</button>
-        <button>ES</button>
-        <button>PT</button>
-      </div>
+    <div class="logo">
+      <img src="../../../assets/images/logo-farms.png" alt="Logo de Farms">
     </div>
+<div class="lang" (click)="toggleMenu()">
+  <img [src]="flags[selectedLang]" [alt]="selectedLang">
+  <span>{{ selectedLang }}</span>
+  <span class="arrow" [class.open]="isOpen">▼</span>
+
+  <div class="lang-menu" *ngIf="isOpen">
+    <button (click)="selectLang('EN'); $event.stopPropagation()">
+      <img src="../../../assets/images/royaume-uni.png" alt="Anglais"> EN
+    </button>
+    <button (click)="selectLang('ES'); $event.stopPropagation()">
+      <img src="../../../assets/images/drapeau.png" alt="Espagnol"> ES
+    </button>
+    <button (click)="selectLang('PT'); $event.stopPropagation()">
+      <img src="../../../assets/images/bresil.png" alt="Portugais"> PT
+    </button>
+  </div>
+</div>
+
   </header>
 </div>

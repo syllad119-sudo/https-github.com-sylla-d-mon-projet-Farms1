@@ -2,23 +2,42 @@ body {
   margin: 0;
 }
 
-
+.header-container {
+  background: #f0f0f0;
+  padding: 0;
+  margin: 0;
+}
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-end;
+  position: relative;
+
+  position: relative;
 
   padding: 10px 25px;
   background: #ffffff;
 
-  
   border-radius: 18px;
-  margin: 0 ;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
   font-family: 'Segoe UI', sans-serif;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+  img {
+    height: 40px;
+    width: auto;
+  }
+}
+
 .lang {
   position: relative;
   cursor: pointer;
@@ -43,7 +62,7 @@ body {
 
   background: white;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
   display: flex;
   flex-direction: column;
@@ -62,11 +81,4 @@ body {
       background: #f2f2f2;
     }
   }
-}
-.header-container {
-  background: #f0f0f0; 
-  padding: 0;
-  margin: 0;
-
-  
 }

@@ -15,7 +15,7 @@
           id="email"
           type="email"
           formControlName="email"
-          placeholder="votre@email.com"
+          placeholder="identifiant"
           [class.input-error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
         />
         <span class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
@@ -29,7 +29,7 @@
           id="password"
           type="password"
           formControlName="password"
-          placeholder="••••••••"
+          placeholder="Mot de passe "
           [class.input-error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
         />
         <span class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
