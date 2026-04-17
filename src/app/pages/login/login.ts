@@ -1,30 +1,42 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { LoginService } from './../../services/login';
+import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.scss',
+  styleUrls: ['./login.scss'], // ← .css → .scss
 })
-export class Login {
-  loginForm: FormGroup;
+export class Login implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    });
+  loginForm!: FormGroup; // ← profileForm → loginForm
+
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
+
+  ngOnInit() {
+    this.loginForm = this.loginService.buildForm(); // ← profileForm → loginForm
   }
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      // Pour l'instant on simule une connexion
-      console.log('Connexion réussie', this.loginForm.value);
-      this.router.navigate(['/contacts']);
+  onSubmit() { // ← handleSubmit → onSubmit
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
+
+    const validForm: boolean = this.loginService.checkLogin(email, password);
+
+    if (validForm) {
+      this.toastr.success('Connexion réussie', 'Bienvenue 👋');
+      this.router.navigate(['/contact-grid']);
+    } else {
+      this.toastr.error('Email ou mot de passe incorrect');
     }
   }
 }
