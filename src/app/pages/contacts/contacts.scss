@@ -1,0 +1,62 @@
+.grid-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+// Style global de la grille
+::ng-deep .k-grid {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+// En-têtes des colonnes
+::ng-deep .k-grid th {
+  background-color: #6ab04c !important;
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: none;
+}
+
+// Lignes du tableau
+::ng-deep .k-grid td {
+  text-align: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
+// Alternance des couleurs de lignes
+::ng-deep .k-grid tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+::ng-deep .k-grid tr:hover {
+  background-color: #f0f7eb;
+}
+
+// Bouton Nouveau contact
+::ng-deep .k-button-solid-primary {
+  background-color: #6ab04c !important;
+  border-color: #6ab04c !important;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+// Boutons éditer et supprimer
+::ng-deep .k-button-solid-base {
+  color: #4a90d9 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+::ng-deep .k-button-solid-error {
+  color: #e74c3c !important;
+  border: none !important;
+  background: transparent !important;
+}

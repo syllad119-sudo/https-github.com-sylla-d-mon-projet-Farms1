@@ -1,0 +1,17 @@
+[
+  { "id": 1, "societe": "Derose", "nom": "Alcivar", "prenom": "Jose-luis", "telephone": "", "pays": "Equateur" },
+  { "id": 2, "societe": "Nova Banana", "nom": "Bobino", "prenom": "André-moreira", "telephone": "", "pays": "Brésil" },
+  { "id": 3, "societe": "Sumo Campo", "nom": "Maria", "prenom": "Philipe", "telephone": "", "pays": "Côte d'Ivoire" },
+  { "id": 4, "societe": "Sipef", "nom": "Angaman", "prenom": "Elvire", "telephone": "", "pays": "Equateur" },
+  { "id": 5, "societe": "BananaFresh Export", "nom": "Diallo", "prenom": "Mamadou", "telephone": "", "pays": "Sénégal" },
+  { "id": 6, "societe": "TropiBanana Group", "nom": "Mensah", "prenom": "Kwame", "telephone": "", "pays": "Ghana" },
+  { "id": 7, "societe": "Banane Verte SARL", "nom": "Dupont", "prenom": "Claire", "telephone": "", "pays": "France" },
+  { "id": 8, "societe": "SunRipe Bananas", "nom": "Lopez", "prenom": "Maria", "telephone": "", "pays": "Colombie" },
+  { "id": 9, "societe": "AgroBanana Solutions", "nom": "Traoré", "prenom": "Aïssata", "telephone": "", "pays": "États-Unis" },
+  { "id": 10, "societe": "BananaWorld Co.", "nom": "Smith", "prenom": "John", "telephone": "", "pays": "Equateur" },
+  { "id": 11, "societe": "Fresh Tropics Ltd", "nom": "Patel", "prenom": "Raj", "telephone": "", "pays": "Inde" },
+  { "id": 12, "societe": "BioBanana Export", "nom": "Müller", "prenom": "Anna", "telephone": "", "pays": "Allemagne" },
+  { "id": 13, "societe": "Banana Plus Afrique", "nom": "N'Doye", "prenom": "Fatou", "telephone": "", "pays": "Sénégal" },
+  { "id": 14, "societe": "Tropic Harvest Bananas", "nom": "Nguyen", "prenom": "Minh", "telephone": "", "pays": "Vietnam" },
+  { "id": 15, "societe": "EcoBanana Farming", "nom": "Rossi", "prenom": "Luca", "telephone": "", "pays": "Italie" }
+]
