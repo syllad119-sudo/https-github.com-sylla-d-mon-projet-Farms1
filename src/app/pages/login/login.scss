@@ -21,28 +21,21 @@ $white: #ffffff;
 // Carte centrale
 .login-card {
   background: $white;
-  padding: 48px 40px;
-  border-radius: 12px;
+  padding: 30px 30px;
+  border-radius: 15px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 420px;
 
   // Logo
-  .login-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 32px;
-
-    span {
-      font-size: 20px;
-      font-weight: 700;
-      color: $primary;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-  }
+  .login-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: 3px;        // ← espacement entre les lettres
+  text-transform: uppercase;
+  color: #222;
+}
 
   // Formulaire
   form {
