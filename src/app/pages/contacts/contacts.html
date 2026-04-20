@@ -8,8 +8,6 @@
   [data]="contacts"
   [height]="500"
   (edit)="editHandler($event)"
-  (cancel)="cancelHandler($event)"
-  (save)="saveHandler($event)"
   (remove)="removeHandler($event)"
 >
   <kendo-grid-column field="societe" title="Société" [width]="150"></kendo-grid-column>
@@ -18,13 +16,30 @@
   <kendo-grid-column field="pays" title="Pays" [width]="120"></kendo-grid-column>
 
   <kendo-grid-command-column title="Actions" [width]="120">
-  <ng-template kendoGridCellTemplate>
-   <button kendoGridEditCommand themeColor="base" [svgIcon]="editIcon" aria-label="Éditer"></button>
-<button kendoGridRemoveCommand themeColor="error" [svgIcon]="deleteIcon" aria-label="Supprimer"></button>
-  </ng-template>
-  <ng-template kendoGridEditTemplate>
-    <button kendoGridSaveCommand themeColor="primary">Sauvegarder</button>
-    <button kendoGridCancelCommand themeColor="base">Annuler</button>
-  </ng-template>
-</kendo-grid-command-column>
+    <ng-template kendoGridCellTemplate>
+      <button kendoGridEditCommand themeColor="base" [svgIcon]="editIcon" aria-label="Éditer"></button>
+      <button kendoGridRemoveCommand themeColor="error" [svgIcon]="deleteIcon" aria-label="Supprimer"></button>
+    </ng-template>
+    <ng-template kendoGridEditTemplate>
+      <button kendoGridSaveCommand themeColor="primary">Sauvegarder</button>
+      <button kendoGridCancelCommand themeColor="base">Annuler</button>
+    </ng-template>
+  </kendo-grid-command-column>
 </kendo-grid>
+
+<!-- ✅ noms alignés avec contact.ts -->
+@if (isDialogOpen) {
+  <kendo-dialog
+    [title]="isNewContact ? 'Nouveau Contact' : 'Modifier Contact'"
+    [minWidth]="300"
+    [width]="500"
+    (close)="onDialogCancel()"
+  >
+    <app-contact
+      [isNew]="isNewContact"
+      [contact]="selectedContact"
+      (save)="onContactSaved($event)"
+      (cancel)="onDialogCancel()">
+    </app-contact>
+  </kendo-dialog>
+}

@@ -13,5 +13,6 @@
   { "id": 12, "societe": "BioBanana Export", "nom": "Müller", "prenom": "Anna", "telephone": "", "pays": "Allemagne" },
   { "id": 13, "societe": "Banana Plus Afrique", "nom": "N'Doye", "prenom": "Fatou", "telephone": "", "pays": "Sénégal" },
   { "id": 14, "societe": "Tropic Harvest Bananas", "nom": "Nguyen", "prenom": "Minh", "telephone": "", "pays": "Vietnam" },
-  { "id": 15, "societe": "EcoBanana Farming", "nom": "Rossi", "prenom": "Luca", "telephone": "", "pays": "Italie" }
+  { "id": 15, "societe": "EcoBanana Farming", "nom": "Rossi", "prenom": "Luca", "telephone": "", "pays": "Italie" },
+  { "id": 16, "societe": "Prime Bananas", "nom": "Koffi", "prenom": "jean", "telephone": "", "pays": "Côte d'Ivoire" }
 ]

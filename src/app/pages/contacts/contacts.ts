@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
-import {
-  KENDO_GRID,
-  EditEvent,
-  RemoveEvent,
-  SaveEvent,
-  CancelEvent,
-} from '@progress/kendo-angular-grid';
+import { ContactComponent } from './../../components/contact-modal/contact-modal';
+import { ContactForm } from './../../models/contactForm.model';
+import { Component, OnInit } from '@angular/core';
+import { KENDO_GRID, EditEvent, RemoveEvent } from '@progress/kendo-angular-grid';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Contact } from '../../models/contact.model';
 import { KENDO_DIALOGS } from '@progress/kendo-angular-dialog';
-import CONTACTS from '../../../assets/contact.json';
 import { pencilIcon, trashIcon, SVGIcon } from '@progress/kendo-svg-icons';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contacts',
@@ -22,30 +18,24 @@ import { pencilIcon, trashIcon, SVGIcon } from '@progress/kendo-svg-icons';
     FormsModule,
     ReactiveFormsModule,
     KENDO_DIALOGS,
+    ContactComponent,
   ],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
-export class Contacts {
+export class Contacts implements OnInit {
   editIcon: SVGIcon = pencilIcon;
   deleteIcon: SVGIcon = trashIcon;
 
-  contacts: Contact[] = [...CONTACTS];
-  editedRowIndex: number | undefined;
-  editedFormGroup: FormGroup | undefined;
-
+  contacts: Contact[] = [];
   isDialogOpen = false;
   selectedContact: Contact | null = null;
   isNewContact = false;
 
-  createFormGroup(dataItem: Contact): FormGroup {
-    return new FormGroup({
-      id: new FormControl(dataItem.id),
-      societe: new FormControl(dataItem.societe),
-      nom: new FormControl(dataItem.nom),
-      prenom: new FormControl(dataItem.prenom),
-      pays: new FormControl(dataItem.pays),
-    });
+  constructor(private contactService: ContactService) {}
+
+  ngOnInit(): void {
+    this.contacts = this.contactService.getContacts();
   }
 
   openAddDialog(): void {
@@ -54,45 +44,28 @@ export class Contacts {
     this.isDialogOpen = true;
   }
 
-  onContactSaved(contact: Contact): void {
-    this.contacts = [contact, ...this.contacts];
+  editHandler(event: EditEvent): void {
+    this.selectedContact = { ...event.dataItem };
+    this.isNewContact = false;
+    this.isDialogOpen = true;
+  }
+
+  onContactSaved(form: ContactForm): void {
+    if (this.isNewContact) {
+      this.contacts = this.contactService.addContact(form);
+    } else {
+      this.contacts = this.contactService.updateContact(this.selectedContact!.id, form);
+    }
     this.isDialogOpen = false;
+    this.selectedContact = null;
   }
 
   onDialogCancel(): void {
     this.isDialogOpen = false;
-  }
-
-  editHandler(event: EditEvent): void {
-    this.closeEditor(event.sender);
-    this.editedRowIndex = event.rowIndex;
-    this.editedFormGroup = this.createFormGroup(event.dataItem);
-    event.sender.editRow(event.rowIndex, this.editedFormGroup);
-  }
-
-  cancelHandler(event: CancelEvent): void {
-    this.closeEditor(event.sender, event.rowIndex);
-  }
-
-  saveHandler(event: SaveEvent): void {
-    if (event.formGroup.valid) {
-      Object.assign(this.contacts[event.rowIndex], event.formGroup.value);
-      this.contacts = [...this.contacts];
-    }
-    event.sender.closeRow(event.rowIndex);
-    this.editedRowIndex = undefined;
-    this.editedFormGroup = undefined;
+    this.selectedContact = null;
   }
 
   removeHandler(event: RemoveEvent): void {
-    this.contacts = this.contacts.filter((_, i) => i !== event.rowIndex);
-  }
-
-  private closeEditor(grid: any, rowIndex = this.editedRowIndex): void {
-    if (rowIndex !== undefined) {
-      grid.closeRow(rowIndex);
-    }
-    this.editedRowIndex = undefined;
-    this.editedFormGroup = undefined;
+    this.contacts = this.contactService.removeContact(event.rowIndex);
   }
 }

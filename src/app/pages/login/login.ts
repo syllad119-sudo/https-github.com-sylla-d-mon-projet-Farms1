@@ -34,8 +34,10 @@ export class Login implements OnInit {
 
     if (validForm) {
       this.toastr.success('Connexion réussie', 'Bienvenue 👋');
-      this.router.navigate(['/contact-grid']);
+      this.router.navigate(['/contacts']);
+    
     } else {
+      
       this.toastr.error('Email ou mot de passe incorrect');
     }
   }
