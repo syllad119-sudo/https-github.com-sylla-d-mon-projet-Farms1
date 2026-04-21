@@ -17,7 +17,7 @@ export class ContactService {
   addContact(form: ContactForm): Contact[] {
     const newContact: Contact = {
       id: _.maxBy(this.contacts, 'id')?.id ?? 0 + 1, // ← id unique basé sur le max
-      ..._.pick(form, ['societe', 'nom', 'prenom', 'pays']), // ← pick les champs utiles
+      ..._.pick(form, ['societe', 'nom', 'prenom', 'email', 'telephone', 'pays', 'commentaire']), // ← pick les champs utiles
     };
     this.contacts = [newContact, ...this.contacts];
     return this.contacts;

@@ -26,10 +26,10 @@ export class ContactComponent implements OnInit {
       societe:   new FormControl(this.contact?.societe ?? '',   [Validators.required, Validators.minLength(2)]),
       nom:       new FormControl(this.contact?.nom ?? '',       [Validators.required, Validators.minLength(2)]),
       prenom:    new FormControl(this.contact?.prenom ?? '',    [Validators.required, Validators.minLength(2)]),
-      email:     new FormControl('',                            [Validators.required, Validators.email]),
-      telephone: new FormControl('',                            [Validators.required]),
+      email:     new FormControl(this.contact?.email ?? '',     [Validators.required, Validators.email]),
+      telephone: new FormControl(this.contact?.telephone ?? '',                            [Validators.required]),
       pays:      new FormControl(this.contact?.pays ?? '',      [Validators.required, Validators.minLength(2)]),
-      commentaire: new FormControl(''), // Pas de validation pour le commentaire  
+      commentaire: new FormControl(this.contact?.commentaire ?? ''), // Pas de validation pour le commentaire  
     });
   }
 

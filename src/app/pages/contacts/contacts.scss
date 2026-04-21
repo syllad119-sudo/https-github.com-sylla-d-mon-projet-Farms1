@@ -1,13 +1,20 @@
 .grid-toolbar {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
-  margin-top: 50px;
+  margin-bottom: 8px;
+  margin-top: 70px;
+
+  
+}
+
+.grid-container {
+  width: 1600px;
+  margin:0 auto;
+  height: auto;
 }
 
 // Style global de la grille
 ::ng-deep .k-grid {
-  border-radius: 8px;
   overflow: hidden;
   border: 1px solid #ddd;
   font-family: Arial, sans-serif;
@@ -22,12 +29,13 @@
   text-align: center;
   padding: 10px;
   border: none;
+  justify-content: center;
 }
 
 // Lignes du tableau
 ::ng-deep .k-grid td {
   text-align: center;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-bottom: 1px solid #f0f0f0;
   color: #333;
 }
@@ -47,6 +55,7 @@
   border-color: #6ab04c !important;
   border-radius: 6px;
   font-weight: bold;
+  padding: 8px 16px;
 }
 
 // Boutons éditer et supprimer
@@ -54,6 +63,7 @@
   color: #4a90d9 !important;
   border: none !important;
   background: transparent !important;
+  justify-content: center;
 }
 
 ::ng-deep .k-button-solid-error {
@@ -100,4 +110,7 @@
     display: flex;
     flex-direction: column;
   }
+
+
+  
 }

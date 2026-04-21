@@ -1,3 +1,5 @@
+
+<div class="grid-container">
 <div class="grid-toolbar">
   <button kendoButton (click)="openAddDialog()" themeColor="primary" icon="plus">
     Nouveau Contact
@@ -6,16 +8,16 @@
 
 <kendo-grid
   [data]="contacts"
-  [height]="500"
+  [height]="600"
   (edit)="editHandler($event)"
   (remove)="removeHandler($event)"
 >
-  <kendo-grid-column field="societe" title="Société" [width]="150"></kendo-grid-column>
-  <kendo-grid-column field="nom" title="Nom" [width]="120"></kendo-grid-column>
-  <kendo-grid-column field="prenom" title="Prénom" [width]="120"></kendo-grid-column>
-  <kendo-grid-column field="pays" title="Pays" [width]="120"></kendo-grid-column>
+  <kendo-grid-column field="societe" title="Société" [width]="60"></kendo-grid-column>
+  <kendo-grid-column field="nom" title="Nom" [width]="60"></kendo-grid-column>
+  <kendo-grid-column field="prenom" title="Prénom" [width]="60"></kendo-grid-column>
+  <kendo-grid-column field="pays" title="Pays" [width]="60"></kendo-grid-column>
 
-  <kendo-grid-command-column title="Actions" [width]="50">
+  <kendo-grid-command-column title="Actions" [width]="40">
     <ng-template kendoGridCellTemplate>
       <button kendoGridEditCommand themeColor="base" [svgIcon]="editIcon" aria-label="Éditer"></button>
       <button kendoGridRemoveCommand themeColor="error" [svgIcon]="deleteIcon" aria-label="Supprimer"></button>
@@ -26,7 +28,7 @@
     </ng-template>
   </kendo-grid-command-column>
 </kendo-grid>
-
+</div>
 <!-- ✅ noms alignés avec contact.ts -->
 @if (isDialogOpen) {
   <kendo-dialog

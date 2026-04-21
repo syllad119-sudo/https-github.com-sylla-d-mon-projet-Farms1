@@ -3,5 +3,8 @@ export interface Contact {
   societe: string;
   nom: string;
   prenom: string;
+  email: string;
+  telephone: string;
   pays: string;
+  commentaire: string;
 }

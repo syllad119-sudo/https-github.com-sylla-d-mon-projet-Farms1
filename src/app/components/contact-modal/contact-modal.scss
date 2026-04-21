@@ -23,8 +23,9 @@
     position: relative;
 
     input, textarea {
-      width: 100%;
-      padding: 10px 12px;
+      width: 90%;
+      margin: 5px;
+      padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 14px;
@@ -33,6 +34,7 @@
       outline: none;
       transition: border-color 0.2s;
       box-sizing: border-box;
+      text-align: center;
 
       &::placeholder {
         color: #aaa;
@@ -119,7 +121,7 @@
 
 ::ng-deep .k-dialog {
   height: 100vh !important;             // ← pleine hauteur
-  width: 420px !important;              // ← largeur fixe
+  width: 500px !important;              // ← largeur fixe
   margin: 0 !important;
   border-radius: 0 !important;
   display: flex;
@@ -143,4 +145,20 @@
     display: flex;
     flex-direction: column;
   }
+
+  // Responsive tablette
+@media (max-width: 768px) {
+  .login-card {
+    padding: 40px 32px;
+    max-width: 380px;
+  }
+}
+
+// Responsive mobile
+@media (max-width: 480px) {
+  .login-card {
+    margin: 16px;
+    padding: 32px 24px;
+  }
+}
 }
