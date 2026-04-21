@@ -1,0 +1,175 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "societe": "Derose",
+      "nom": "Alcivar",
+      "prenom": "Jose-luis",
+      "email": "j.alcivar@derose.ec",
+      "telephone": "+593 98 412 67 30",
+      "pays": "Equateur",
+      "commentaire": "Partenaire historique, intéressé par une extension de contrat."
+    },
+    {
+      "id": "2",
+      "societe": "Nova Banana",
+      "nom": "Bobino",
+      "prenom": "André-moreira",
+      "email": "a.bobino@novabanana.com.br",
+      "telephone": "+55 11 98 234 56 78",
+      "pays": "Brésil",
+      "commentaire": "En attente de validation du devis pack premium."
+    },
+    {
+      "id": "3",
+      "societe": "Sumo Campo",
+      "nom": "Maria",
+      "prenom": "Philipe",
+      "email": "p.maria@sumocampo.ci",
+      "telephone": "+225 07 12 34 56 78",
+      "pays": "Côte d'Ivoire",
+      "commentaire": "Première prise de contact, à relancer en juillet."
+    },
+    {
+      "id": "4",
+      "societe": "Sipef",
+      "nom": "Angaman",
+      "prenom": "Elvire",
+      "email": "e.angaman@sipef.ec",
+      "telephone": "+593 99 567 89 01",
+      "pays": "Equateur",
+      "commentaire": "Intéressée par le pack business, rendez-vous prévu."
+    },
+    {
+      "id": "5",
+      "societe": "BananaFresh Export",
+      "nom": "Diallo",
+      "prenom": "Mamadou",
+      "email": "m.diallo@bananafresh.sn",
+      "telephone": "+221 77 456 78 90",
+      "pays": "Sénégal",
+      "commentaire": "Commande en cours de traitement, livraison prévue fin août."
+    },
+    {
+      "id": "6",
+      "societe": "TropiBanana Group",
+      "nom": "Mensah",
+      "prenom": "Kwame",
+      "email": "k.mensah@tropibanana.gh",
+      "telephone": "+233 54 321 09 87",
+      "pays": "Ghana",
+      "commentaire": "Nouveau client, signature du contrat en attente."
+    },
+    {
+      "id": "7",
+      "societe": "Banane Verte SARL",
+      "nom": "Dupont",
+      "prenom": "Claire",
+      "email": "c.dupont@bananeverte.fr",
+      "telephone": "+33 06 12 34 56 78",
+      "pays": "France",
+      "commentaire": "Cliente fidèle, renouvellement automatique chaque année."
+    },
+    {
+      "id": "8",
+      "societe": "SunRipe Bananas",
+      "nom": "Lopez",
+      "prenom": "Maria",
+      "email": "m.lopez@sunripe.co",
+      "telephone": "+57 310 234 56 78",
+      "pays": "Colombie",
+      "commentaire": "Intéressée par un partenariat exclusif sur la zone Amérique du Sud."
+    },
+    {
+      "id": "9",
+      "societe": "AgroBanana Solutions",
+      "nom": "Traoré",
+      "prenom": "Aïssata",
+      "email": "a.traore@agrobanana.us",
+      "telephone": "+1 415 234 56 78",
+      "pays": "États-Unis",
+      "commentaire": "Contact référencé par un partenaire, à qualifier."
+    },
+    {
+      "id": "10",
+      "societe": "BananaWorld Co.",
+      "nom": "Smith",
+      "prenom": "John",
+      "email": "j.smith@bananaworld.ec",
+      "telephone": "+593 96 789 01 23",
+      "pays": "Equateur",
+      "commentaire": "Demande de documentation technique envoyée, en attente de retour."
+    },
+    {
+      "id": "11",
+      "societe": "Fresh Tropics Ltd",
+      "nom": "Patel",
+      "prenom": "Raj",
+      "email": "r.patel@freshtropics.in",
+      "telephone": "+91 98 765 43 21",
+      "pays": "Inde",
+      "commentaire": "Intéressé par l'import de variétés biologiques, à suivre."
+    },
+    {
+      "id": "12",
+      "societe": "BioBanana Export",
+      "nom": "Müller",
+      "prenom": "Anna",
+      "email": "a.muller@biobanana.de",
+      "telephone": "+49 151 234 56 78",
+      "pays": "Allemagne",
+      "commentaire": "Spécialisée bio, cherche fournisseur certifié EU."
+    },
+    {
+      "id": "13",
+      "societe": "Banana Plus Afrique",
+      "nom": "N'Doye",
+      "prenom": "Fatou",
+      "email": "f.ndoye@bananaplus.sn",
+      "telephone": "+221 76 543 21 09",
+      "pays": "Sénégal",
+      "commentaire": "Distributrice régionale, intéressée par volume important."
+    },
+    {
+      "id": "14",
+      "societe": "Tropic Harvest Bananas",
+      "nom": "Nguyen",
+      "prenom": "Minh",
+      "email": "m.nguyen@tropicharvest.vn",
+      "telephone": "+84 90 123 45 67",
+      "pays": "Vietnam",
+      "commentaire": "Nouveau marché Asie, première commande test en cours."
+    },
+    {
+      "id": "15",
+      "societe": "EcoBanana Farming",
+      "nom": "Rossi",
+      "prenom": "Luca",
+      "email": "l.rossi@ecobanana.it",
+      "telephone": "+39 333 456 78 90",
+      "pays": "Italie",
+      "commentaire": "Producteur local, cherche débouchés à l'export."
+    },
+    {
+      "id": "16",
+      "societe": "Prime Bananas",
+      "nom": "Koffi",
+      "prenom": "Jean",
+      "email": "j.ko@prime-banana-export.com",
+      "telephone": "+225 07 58 23 91 64",
+      "pays": "Côte d'Ivoire",
+      "commentaire": "Contact intéressé par le pack starter."
+    },
+    {
+      "societe": "GanGAN",
+      "nom": "SYLLA",
+      "prenom": "DAVID",
+      "email": "sylladavid007@yahoo.fr",
+      "telephone": "0782850797",
+      "pays": "france ",
+      "commentaire": "coucou",
+      "id": "ORkTvZyPozU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -50,9 +50,15 @@ body {
   border-radius: 8px;
   transition: 0.3s;
 
+  img {
+    height: 22px;
+    width: 22px;
+  }
+
   &:hover {
     background: #f5f5f5;
   }
+  
 }
 
 .lang-menu {
@@ -69,6 +75,11 @@ body {
 
   min-width: 120px;
   overflow: hidden;
+
+  img {
+    height: 22px;
+    width: 22px;
+  }
 
   button {
     border: none;

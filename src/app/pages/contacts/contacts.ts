@@ -35,7 +35,9 @@ export class Contacts implements OnInit {
   constructor(private contactService: ContactService) {}
 
   ngOnInit(): void {
-    this.contacts = this.contactService.getContacts();
+    this.contactService.getContacts().subscribe(data => {
+      this.contacts = data;
+    });
   }
 
   openAddDialog(): void {
@@ -50,11 +52,21 @@ export class Contacts implements OnInit {
     this.isDialogOpen = true;
   }
 
+  private refreshContacts(): void {
+    this.contactService.getContacts().subscribe(data => {
+      this.contacts = data;
+    });
+  }
+
   onContactSaved(form: ContactForm): void {
     if (this.isNewContact) {
-      this.contacts = this.contactService.addContact(form);
+      this.contactService.addContact(form).subscribe(() => {
+        this.refreshContacts();
+      });
     } else {
-      this.contacts = this.contactService.updateContact(this.selectedContact!.id, form);
+      this.contactService.updateContact(this.selectedContact!.id, form).subscribe(() => {
+        this.refreshContacts();
+      });
     }
     this.isDialogOpen = false;
     this.selectedContact = null;
@@ -66,6 +78,9 @@ export class Contacts implements OnInit {
   }
 
   removeHandler(event: RemoveEvent): void {
-    this.contacts = this.contactService.removeContact(event.rowIndex);
+    const id = event.dataItem.id; // ← id réel, pas l'index
+    this.contactService.removeContact(id).subscribe(() => {
+      this.refreshContacts();
+    });
   }
 }
