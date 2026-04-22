@@ -21,11 +21,12 @@ $white: #ffffff;
 // Carte centrale
 .login-card {
   background: $white;
-  padding: 30px 30px;
+  padding: 20px 30px;
   border-radius: 15px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  width: 150%;
+  width: 100%;
   max-width: 420px;
+  height: auto;
 
   .logo {
   display: flex;
@@ -33,17 +34,18 @@ $white: #ffffff;
   justify-content: center;
   gap: 6px;
   font-family: 'Rocket Wildness', sans-serif;
-  font-size: 30px;
-  font-weight: 500;
+  font-size: 25px;
+  font-weight: bold;
   letter-spacing: 4px;
-  color: #444;
+  color: black;
+  margin: 10px;
 
   .logo-slash {
     color: #6ab04c;
     letter-spacing: 0;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 1;
+    font-size: 40px;
+    line-height: 2;
     margin: 0 2px;
   }
 

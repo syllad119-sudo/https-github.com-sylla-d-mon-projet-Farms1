@@ -1,17 +1,18 @@
 import { ContactComponent } from './../../components/contact-modal/contact-modal';
 import { ContactForm } from './../../models/contactForm.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { KENDO_GRID, EditEvent, RemoveEvent } from '@progress/kendo-angular-grid';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Contact } from '../../models/contact.model';
 import { KENDO_DIALOGS } from '@progress/kendo-angular-dialog';
-import { pencilIcon, trashIcon, SVGIcon } from '@progress/kendo-svg-icons';
+import { pencilIcon, trashIcon, SVGIcon,  } from '@progress/kendo-svg-icons';
 import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
+  // encapsulation: ViewEncapsulation.None,
   imports: [
     KENDO_GRID,
     CommonModule,
@@ -31,12 +32,14 @@ export class Contacts implements OnInit {
   isDialogOpen = false;
   selectedContact: Contact | null = null;
   isNewContact = false;
+  showGrid = false;
 
   constructor(private contactService: ContactService) {}
 
   ngOnInit(): void {
     this.contactService.getContacts().subscribe(data => {
       this.contacts = data;
+      this.showGrid = true; // Affiche la grille une fois les données chargées
     });
   }
 

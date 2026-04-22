@@ -1,16 +1,6 @@
 {
   "contacts": [
     {
-      "id": "1",
-      "societe": "Derose",
-      "nom": "Alcivar",
-      "prenom": "Jose-luis",
-      "email": "j.alcivar@derose.ec",
-      "telephone": "+593 98 412 67 30",
-      "pays": "Equateur",
-      "commentaire": "Partenaire historique, intéressé par une extension de contrat."
-    },
-    {
       "id": "2",
       "societe": "Nova Banana",
       "nom": "Bobino",
@@ -159,16 +149,6 @@
       "telephone": "+225 07 58 23 91 64",
       "pays": "Côte d'Ivoire",
       "commentaire": "Contact intéressé par le pack starter."
-    },
-    {
-      "societe": "GanGAN",
-      "nom": "SYLLA",
-      "prenom": "DAVID",
-      "email": "sylladavid007@yahoo.fr",
-      "telephone": "0782850797",
-      "pays": "france ",
-      "commentaire": "coucou",
-      "id": "ORkTvZyPozU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

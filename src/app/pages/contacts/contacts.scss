@@ -1,8 +1,104 @@
 .grid-toolbar {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 8px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
   margin-top: 70px;
+}
+.toolbar-icon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+
+.file-icon {
+  background-color: #8dc63f;
+  border-radius: 6px;
+  width: 30px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  // coin replié en haut à droite
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background-color: #2d6a4f;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+}
+
+.file-arrow {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 4px;
+}.toolbar-icon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+
+.file-icon {
+  background-color: #2d6a4f;
+  border-radius: 6px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  // coin replié en haut à droite
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background-color: #6aaa2a;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+}
+
+.file-arrow {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.btn-nouveau-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: #4a4a4a;
+  font-weight: 600;
+  font-size: 14px;
+  border: 2px solid #8dc63f;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f7eb;
+  }
+}
+
+.btn-icon {
+  color: #8dc63f;
+  font-size: 16px;
 }
 
 .grid-container {
@@ -11,64 +107,6 @@
   height: auto;
 }
 
-// Style global de la grille
-::ng-deep .k-grid {
-  overflow: hidden;
-  border: 1px solid #ddd;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-}
-
-// En-têtes des colonnes
-::ng-deep .k-grid th {
-  background-color: #8dc63f !important;
-  color: white !important;
-  font-weight: bold;
-  text-align: center;
-  padding: 20px;
-  border: none;
-  justify-content: center;
-}
-
-// Lignes du tableau
-::ng-deep .k-grid td {
-  text-align: center;
-  padding: 8px 14px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #333;
-}
-
-// Alternance des couleurs de lignes
-::ng-deep .k-grid tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-::ng-deep .k-grid tr:hover {
-  background-color: #f0f7eb;
-}
-
-// Bouton Nouveau contact
-::ng-deep .k-button-solid-primary {
-  background-color: #6ab04c !important;
-  border-color: #6ab04c !important;
-  border-radius: 6px;
-  font-weight: bold;
-  padding: 8px 16px;
-}
-
-// Boutons éditer et supprimer
-::ng-deep .k-button-solid-base {
-  color: #4a90d9 !important;
-  border: none !important;
-  background: transparent !important;
-  justify-content: center;
-}
-
-::ng-deep .k-button-solid-error {
-  color: #e74c3c !important;
-  border: none !important;
-  background: transparent !important;
-}
 
 // ── Kendo Dialog pleine hauteur à droite
 ::ng-deep .k-dialog-wrapper {

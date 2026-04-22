@@ -15,3 +15,82 @@ body {
   font-family: 'Rocket Wildness';
   src: url('./assets/fonts/Rocket wildness.ttf') format('truetype');
 }
+
+/* Kendo Grid */
+.k-grid {
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  overflow: visible;
+}
+
+.k-grid-header {
+  padding-right: 0 !important;
+  overflow: hidden !important;
+}
+
+.k-grid-header table,
+.k-grid-header .k-table,
+.k-grid-content table,
+.k-grid-content .k-table {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+.k-grid-content {
+  height: auto !important;
+  max-height: none !important;       
+  overflow-y: visible !important;    
+  overflow-x: hidden !important;
+}
+
+.k-grid th,
+.k-grid .k-table-th {
+  background-color: #8dc63f !important;
+  color: white !important;
+  font-weight: bold;
+  text-align: center !important;
+  vertical-align: middle !important;
+  padding: 16px 16px !important;
+  border: none !important;
+   border-right: 1px solid rgba(255,255,255,0.3) !important;
+   justify-content: center;
+   
+}
+
+.k-grid td,
+.k-grid .k-table-td {
+ 
+  padding: 6px 16px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  color: #333;
+    border-right: 1px solid #f0f0f0 !important;
+}
+
+.k-grid tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.k-grid tr:hover {
+  background-color: #f0f7eb;
+}
+
+.k-button-solid-primary {
+  background-color: #6ab04c !important;
+  border-color: #6ab04c !important;
+  border-radius: 6px;
+  font-weight: bold;
+  padding: 8px 16px;
+}
+
+.k-button-solid-base {
+  color: #4a90d9 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.k-button-solid-error {
+  color: #e74c3c !important;
+  border: none !important;
+  background: transparent !important;
+}
