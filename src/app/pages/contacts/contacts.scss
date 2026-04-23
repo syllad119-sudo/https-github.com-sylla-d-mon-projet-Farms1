@@ -16,7 +16,7 @@
   background-color: #8dc63f;
   border-radius: 6px;
   width: 30px;
-  height: 42px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,6 +94,11 @@
   &:hover {
     background-color: #f0f7eb;
   }
+}
+
+.icon-button {
+  width: 16px;
+  height: 16px;
 }
 
 .btn-icon {

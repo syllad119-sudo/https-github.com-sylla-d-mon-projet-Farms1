@@ -1,19 +1,25 @@
 <div class="grid-container">
- <div class="grid-toolbar">
+  <div class="grid-toolbar">
     <div class="toolbar-icon">
       <div class="file-icon">
         <div class="file-corner"></div>
         <div class="file-arrow">→</div>
       </div>
-</div>
+    </div>
 
-  <button class="btn-nouveau-contact" (click)="openAddDialog()">
-    <span class="btn-icon">👤+</span>
-    Nouveau contact
-  </button>
-</div>
-@if (showGrid) {
-  <kendo-grid [data]="contacts" (edit)="editHandler($event)" (remove)="removeHandler($event)">
+    <button class="btn-nouveau-contact" (click)="openAddDialog()">
+      <img src="../../../assets/adduser2.png" alt="Ajouter" class="btn-icon" />
+      Nouveau contact
+    </button>
+  </div>
+
+  <!-- Le grid se met à jour automatiquement grâce au BehaviorSubject dans le service de contact. -->
+
+  <kendo-grid
+    [data]="(contactService.contacts$ | async) ?? []"
+    (edit)="editHandler($event)"
+    (remove)="removeHandler($event)"
+  >
     <kendo-grid-column field="societe" title="Société" [width]="60"></kendo-grid-column>
     <kendo-grid-column field="nom" title="Nom" [width]="60"></kendo-grid-column>
     <kendo-grid-column field="prenom" title="Prénom" [width]="60"></kendo-grid-column>
@@ -21,13 +27,10 @@
 
     <kendo-grid-command-column title="Action" [width]="30">
       <ng-template kendoGridCellTemplate>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 10px">
-          <button
-            kendoGridEditCommand
-            themeColor="base"
-            [svgIcon]="editIcon"
-            aria-label="Éditer"
-          ></button>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 5px">
+          <button kendoGridEditCommand themeColor="base" aria-label="Éditer">
+            <img src="../../../assets/nlogoedit.png" alt="Edit Icon" class="icon-button" />
+          </button>
           <button
             kendoGridRemoveCommand
             themeColor="error"
@@ -42,9 +45,8 @@
       </ng-template>
     </kendo-grid-command-column>
   </kendo-grid>
-}
 </div>
-<!-- ✅ noms alignés avec contact.ts -->
+
 @if (isDialogOpen) {
   <kendo-dialog
     [title]="isNewContact ? 'Nouveau Contact' : 'Modifier Contact'"

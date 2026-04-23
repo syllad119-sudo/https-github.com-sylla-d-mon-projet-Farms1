@@ -6,13 +6,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Contact } from '../../models/contact.model';
 import { KENDO_DIALOGS } from '@progress/kendo-angular-dialog';
-import { pencilIcon, trashIcon, SVGIcon,  } from '@progress/kendo-svg-icons';
+import { pencilIcon, trashIcon, SVGIcon } from '@progress/kendo-svg-icons';
 import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  // encapsulation: ViewEncapsulation.None,
   imports: [
     KENDO_GRID,
     CommonModule,
@@ -34,12 +33,18 @@ export class Contacts implements OnInit {
   isNewContact = false;
   showGrid = false;
 
-  constructor(private contactService: ContactService) {}
+  constructor(public contactService: ContactService) {}
 
   ngOnInit(): void {
-    this.contactService.getContacts().subscribe(data => {
+    // S'abonner au BehaviorSubject pour la mise à jour automatique
+    this.contactService.contacts$.subscribe(data => {
       this.contacts = data;
-      this.showGrid = true; // Affiche la grille une fois les données chargées
+      if (data.length > 0) this.showGrid = true;
+    });
+
+    // Charger les données une seule fois au démarrage
+    this.contactService.getContacts().subscribe(() => {
+      this.showGrid = true;
     });
   }
 
@@ -55,21 +60,13 @@ export class Contacts implements OnInit {
     this.isDialogOpen = true;
   }
 
-  private refreshContacts(): void {
-    this.contactService.getContacts().subscribe(data => {
-      this.contacts = data;
-    });
-  }
-
   onContactSaved(form: ContactForm): void {
     if (this.isNewContact) {
-      this.contactService.addContact(form).subscribe(() => {
-        this.refreshContacts();
-      });
+      // addContact met à jour le BehaviorSubject automatiquement
+      this.contactService.addContact(form).subscribe();
     } else {
-      this.contactService.updateContact(this.selectedContact!.id, form).subscribe(() => {
-        this.refreshContacts();
-      });
+      // updateContact met à jour le BehaviorSubject automatiquement
+      this.contactService.updateContact(this.selectedContact!.id, form).subscribe();
     }
     this.isDialogOpen = false;
     this.selectedContact = null;
@@ -81,9 +78,8 @@ export class Contacts implements OnInit {
   }
 
   removeHandler(event: RemoveEvent): void {
-    const id = event.dataItem.id; // ← id réel, pas l'index
-    this.contactService.removeContact(id).subscribe(() => {
-      this.refreshContacts();
-    });
+    const id = event.dataItem.id;
+    // removeContact met à jour le BehaviorSubject automatiquement
+    this.contactService.removeContact(id).subscribe();
   }
 }
