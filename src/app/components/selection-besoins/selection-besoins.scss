@@ -1,0 +1,28 @@
+.besoins-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 12px 0;
+}
+
+.besoin-btn {
+  padding: 10px 14px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  text-align: center;
+
+  &:hover {
+    border-color: #2d7a2d;
+    background: #f0faf0;
+  }
+
+  &.selected {
+    background: #2d7a2d;
+    color: white;
+    border-color: #2d7a2d;
+  }
+}

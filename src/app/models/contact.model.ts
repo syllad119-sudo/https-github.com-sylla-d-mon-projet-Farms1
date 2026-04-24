@@ -1,3 +1,4 @@
+// DONNEES RESUES
 export interface Contact {
   id: string;
   societe: string;
@@ -6,5 +7,6 @@ export interface Contact {
   email: string;
   telephone: string;
   pays: string;
-  commentaire: string;
+  besoins: string[];    // ✅ ajouter cette ligne
+commentaire: string;
 }

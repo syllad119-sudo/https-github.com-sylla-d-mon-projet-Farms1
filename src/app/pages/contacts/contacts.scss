@@ -2,81 +2,64 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 8px;
   margin-bottom: 16px;
   margin-top: 70px;
-}
-.toolbar-icon {
-  position: relative;
-  width: 42px;
-  height: 42px;
+  // ← plus de gap ici
 }
 
-.file-icon {
-  background-color: #8dc63f;
-  border-radius: 6px;
-  width: 30px;
-  height: 30px;
+.toolbar-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  gap: 4px;        // ← réduit le gap
+}
 
-  // coin replié en haut à droite
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 12px;
-    height: 12px;
-    background-color: #2d6a4f;
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
+.toolbar-img {
+  width: 44px;     // ← même hauteur que le bouton
+  height: 44px;
+  object-fit: contain;
+  cursor: pointer;
+  display: block;
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
-.file-arrow {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 4px;
-}.toolbar-icon {
-  position: relative;
-  width: 42px;
-  height: 42px;
-}
+  
 
-.file-icon {
-  background-color: #2d6a4f;
-  border-radius: 6px;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+
+
+// .file-icon {
+//   background-color: #2d6a4f;
+//   border-radius: 6px;
+//   width: 42px;
+//   height: 42px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   position: relative;
+//   overflow: hidden;
 
   // coin replié en haut à droite
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 12px;
-    height: 12px;
-    background-color: #6aaa2a;
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
-  }
-}
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     width: 12px;
+//     height: 12px;
+//     background-color: #6aaa2a;
+//     clip-path: polygon(100% 0, 0 0, 100% 100%);
+//   }
+// }
 
-.file-arrow {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 4px;
-}
+// .file-arrow {
+//   color: white;
+//   font-size: 20px;
+//   font-weight: bold;
+//   margin-top: 4px;
+// }
 
 .btn-nouveau-contact {
   display: flex;

@@ -1,3 +1,4 @@
+// DONNEES SAISIES 
 export interface ContactForm {
   societe: string;
   nom: string;
@@ -5,5 +6,6 @@ export interface ContactForm {
   email: string;
   telephone: string;
   pays: string;
+  besoins: string[];
   commentaire: string;
 }

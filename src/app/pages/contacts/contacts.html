@@ -1,18 +1,15 @@
 <div class="grid-container">
   <div class="grid-toolbar">
-    <div class="toolbar-icon">
-      <div class="file-icon">
-        <div class="file-corner"></div>
-        <div class="file-arrow">→</div>
-      </div>
-    </div>
-
+  <div class="toolbar-actions">
+    <a href="assets/fichiers/fichier.xlsx" download="fichier.xlsx">
+      <img src="../../../assets/logo-excel2.png" alt="Excel" class="toolbar-img" />
+    </a>
     <button class="btn-nouveau-contact" (click)="openAddDialog()">
       <img src="../../../assets/adduser2.png" alt="Ajouter" class="btn-icon" />
       Nouveau contact
     </button>
   </div>
-
+</div>
   <!-- Le grid se met à jour automatiquement grâce au BehaviorSubject dans le service de contact. -->
 
   <kendo-grid
