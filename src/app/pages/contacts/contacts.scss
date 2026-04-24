@@ -6,15 +6,15 @@
   margin-top: 70px;
   // ← plus de gap ici
 }
-
+// Bouton Excel
 .toolbar-actions {
   display: flex;
   align-items: center;
-  gap: 4px;        // ← réduit le gap
+  gap: 4px;      
 }
 
 .toolbar-img {
-  width: 44px;     // ← même hauteur que le bouton
+  width: 44px;    
   height: 44px;
   object-fit: contain;
   cursor: pointer;
@@ -26,41 +26,8 @@
   }
 }
 
-  
 
-
-
-// .file-icon {
-//   background-color: #2d6a4f;
-//   border-radius: 6px;
-//   width: 42px;
-//   height: 42px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   position: relative;
-//   overflow: hidden;
-
-  // coin replié en haut à droite
-//   &::before {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     width: 12px;
-//     height: 12px;
-//     background-color: #6aaa2a;
-//     clip-path: polygon(100% 0, 0 0, 100% 100%);
-//   }
-// }
-
-// .file-arrow {
-//   color: white;
-//   font-size: 20px;
-//   font-weight: bold;
-//   margin-top: 4px;
-// }
-
+// Bouton Nouveau Contact
 .btn-nouveau-contact {
   display: flex;
   align-items: center;
@@ -96,7 +63,7 @@
 }
 
 
-// ── Kendo Dialog pleine hauteur à droite
+// ── Kendo Dialog 
 ::ng-deep .k-dialog-wrapper {
   display: flex !important;
   justify-content: flex-end !important;

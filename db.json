@@ -1,22 +1,17 @@
 {
   "contacts": [
     {
-      "societe": "Nova Banana",
-      "nom": "Bobino",
-      "prenom": "André-moreira",
-      "email": "a.bobino@novabanana.com.br",
-      "telephone": "+55 11 98 234 56 78",
-      "pays": "Brézil",
-      "commentaire": "En attente de validation du devis pack premium.",
-      "id": "2"
-    },
-    {
       "societe": "Sumo Campo",
       "nom": "Maria",
       "prenom": "Philipe",
       "email": "p.maria@sumocampo.ci",
       "telephone": "+225 07 12 34 56 78",
       "pays": "Côte ",
+      "besoins": [
+        "Contrôle de la production - Production control",
+        "Gestion de la main d'œuvre - Workforce management",
+        "Gestion des parcelles - Parcel management"
+      ],
       "commentaire": "Première prise de contact, à relancer en juillet.",
       "id": "3"
     },
@@ -149,6 +144,21 @@
       "telephone": "+225 07 58 23 91 64",
       "pays": "Côte d'Ivoire",
       "commentaire": "Contact intéressé par le pack starter."
+    },
+    {
+      "societe": "hello",
+      "nom": "hello",
+      "prenom": "hello",
+      "email": "sylladavid1149@gmail.com",
+      "telephone": "0782850797",
+      "pays": "Guinee",
+      "besoins": [
+        "Contrôle de la production - Production control",
+        "Fiabilité des informations - Reliability",
+        "Précision des informations - Accuracy"
+      ],
+      "commentaire": "",
+      "id": "TaTKiujnV2U"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

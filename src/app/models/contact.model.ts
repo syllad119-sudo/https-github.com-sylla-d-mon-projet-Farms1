@@ -7,6 +7,6 @@ export interface Contact {
   email: string;
   telephone: string;
   pays: string;
-  besoins: string[];    // ✅ ajouter cette ligne
-commentaire: string;
+  besoins: string[];
+  commentaire: string;
 }
