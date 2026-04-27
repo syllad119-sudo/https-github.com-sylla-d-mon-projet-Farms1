@@ -144,21 +144,6 @@
       "telephone": "+225 07 58 23 91 64",
       "pays": "Côte d'Ivoire",
       "commentaire": "Contact intéressé par le pack starter."
-    },
-    {
-      "societe": "hello",
-      "nom": "hello",
-      "prenom": "hello",
-      "email": "sylladavid1149@gmail.com",
-      "telephone": "0782850797",
-      "pays": "Guinee",
-      "besoins": [
-        "Contrôle de la production - Production control",
-        "Fiabilité des informations - Reliability",
-        "Précision des informations - Accuracy"
-      ],
-      "commentaire": "",
-      "id": "TaTKiujnV2U"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
