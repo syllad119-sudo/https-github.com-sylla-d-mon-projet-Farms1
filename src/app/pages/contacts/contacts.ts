@@ -1,6 +1,6 @@
 import { ContactComponent } from './../../components/contact-modal/contact-modal';
 import { ContactForm } from './../../models/contactForm.model';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { KENDO_GRID, EditEvent, RemoveEvent } from '@progress/kendo-angular-grid';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,16 +33,14 @@ export class Contacts implements OnInit {
   isNewContact = false;
   showGrid = false;
 
-  constructor(public contactService: ContactService) {}
+  public contactService = inject(ContactService);
 
   ngOnInit(): void {
-    // S'abonner au BehaviorSubject pour la mise à jour automatique
-    this.contactService.contacts$.subscribe(data => {
+    this.contactService.contacts$.subscribe((data: Contact[]) => {
       this.contacts = data;
       if (data.length > 0) this.showGrid = true;
     });
 
-    // Charger les données une seule fois au démarrage
     this.contactService.getContacts().subscribe(() => {
       this.showGrid = true;
     });
@@ -62,10 +60,8 @@ export class Contacts implements OnInit {
 
   onContactSaved(form: ContactForm): void {
     if (this.isNewContact) {
-      // addContact met à jour le BehaviorSubject automatiquement
       this.contactService.addContact(form).subscribe();
     } else {
-      // updateContact met à jour le BehaviorSubject automatiquement
       this.contactService.updateContact(this.selectedContact!.id, form).subscribe();
     }
     this.isDialogOpen = false;
@@ -78,8 +74,6 @@ export class Contacts implements OnInit {
   }
 
   removeHandler(event: RemoveEvent): void {
-    const id = event.dataItem.id;
-    // removeContact met à jour le BehaviorSubject automatiquement
-    this.contactService.removeContact(id).subscribe();
+    this.contactService.removeContact(event.dataItem.id).subscribe();
   }
 }

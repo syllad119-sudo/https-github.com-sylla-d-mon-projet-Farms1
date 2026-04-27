@@ -1,26 +1,29 @@
 <div class="grid-container">
   <div class="grid-toolbar">
-  <div class="toolbar-actions">
-    <a href="assets/fichiers/fichier.xlsx" download="fichier.xlsx">
-      <img src="../../../assets/excel3.png" alt="Excel" class="toolbar-img" />
-    </a>
-    <button class="btn-nouveau-contact" (click)="openAddDialog()">
-      <img src="../../../assets/adduser2.png" alt="Ajouter" class="btn-icon" />
-      Nouveau contact
-    </button>
+    <div class="toolbar-actions">
+      <a href="assets/fichiers/fichier.xlsx" download="fichier.xlsx">
+        <img src="../../../assets/excel3.png" alt="Excel" class="toolbar-img" />
+      </a>
+      <button class="btn-nouveau-contact" (click)="openAddDialog()">
+        <img src="../../../assets/adduser2.png" alt="Ajouter" class="btn-icon" />
+        Nouveau contact
+      </button>
+    </div>
   </div>
-</div>
-  <!-- Le grid se met à jour automatiquement grâce au BehaviorSubject dans le service de contact. -->
 
   <kendo-grid
     [data]="(contactService.contacts$ | async) ?? []"
     (edit)="editHandler($event)"
     (remove)="removeHandler($event)"
   >
-    <kendo-grid-column field="societe" title="Société" [width]="60"></kendo-grid-column>
-    <kendo-grid-column field="nom" title="Nom" [width]="60"></kendo-grid-column>
-    <kendo-grid-column field="prenom" title="Prénom" [width]="60"></kendo-grid-column>
-    <kendo-grid-column field="pays" title="Pays" [width]="60"></kendo-grid-column>
+    <kendo-grid-column field="societe" title="Société" [width]="60">
+    </kendo-grid-column>
+    <kendo-grid-column field="nom" title="Nom" [width]="60">
+    </kendo-grid-column>
+    <kendo-grid-column field="prenom" title="Prénom" [width]="60">
+    </kendo-grid-column>
+    <kendo-grid-column field="pays" title="Pays" [width]="60">
+    </kendo-grid-column>
 
     <kendo-grid-command-column title="Action" [width]="30">
       <ng-template kendoGridCellTemplate>
@@ -28,12 +31,9 @@
           <button kendoGridEditCommand themeColor="base" aria-label="Éditer">
             <img src="../../../assets/nlogoedit.png" alt="Edit Icon" class="icon-button" />
           </button>
-          <button
-            kendoGridRemoveCommand
-            themeColor="error"
-            [svgIcon]="deleteIcon"
-            aria-label="Supprimer"
-          ></button>
+          <button kendoGridRemoveCommand themeColor="error"
+            [svgIcon]="deleteIcon" aria-label="Supprimer">
+          </button>
         </div>
       </ng-template>
       <ng-template kendoGridEditTemplate>

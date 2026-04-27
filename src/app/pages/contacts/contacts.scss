@@ -1,20 +1,20 @@
+// ─── TOOLBAR ───────────────────────────────────────────
 .grid-toolbar {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 16px;
   margin-top: 70px;
-  // ← plus de gap ici
 }
-// Bouton Excel
+
 .toolbar-actions {
   display: flex;
   align-items: center;
-  gap: 4px;      
+  gap: 4px;
 }
 
 .toolbar-img {
-  width: 44px;    
+  width: 44px;
   height: 44px;
   object-fit: contain;
   cursor: pointer;
@@ -26,8 +26,6 @@
   }
 }
 
-
-// Bouton Nouveau Contact
 .btn-nouveau-contact {
   display: flex;
   align-items: center;
@@ -52,18 +50,30 @@
 }
 
 .btn-icon {
-  color: #8dc63f;
-  font-size: 16px;
+  width: 20px;
+  height: 20px;
 }
 
+// ─── GRID ───────────────────────────────────────────────
 .grid-container {
-  width: 1600px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1600px;  // ← jamais plus large que 1600px
+  margin: 0 auto;     // ← centré
   height: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;  // ← scroll horizontal si besoin
+  
 }
 
+* {
+  box-sizing: border-box;
+}
 
-// ── Kendo Dialog 
+body {
+ margin: 0;
+}
+
+// ─── MODALE KENDO ───────────────────────────────────────
 ::ng-deep .k-dialog-wrapper {
   display: flex !important;
   justify-content: flex-end !important;
@@ -73,7 +83,6 @@
 
 ::ng-deep .k-dialog {
   height: 100vh !important;
-  width: 420px !important;
   margin: 0 !important;
   border-radius: 0 !important;
   position: fixed !important;
@@ -82,6 +91,7 @@
   left: auto !important;
   display: flex;
   flex-direction: column;
+  width: 500px !important;
 
   .k-dialog-titlebar {
     background: #fff;
@@ -90,6 +100,7 @@
     font-weight: 600;
     border-bottom: 1px solid #eee;
     justify-content: center;
+    text-align: center;
     padding: 20px;
     flex-shrink: 0;
   }
@@ -100,5 +111,50 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+  }
+}
+
+// ─── RESPONSIVE ─────────────────────────────────────────
+
+// 📱 Mobile < 576px : Société + Action uniquement
+@media (max-width: 576px) {
+  .grid-toolbar {
+    margin-top: 16px;
+    justify-content: center;
+  }
+
+  .grid-container{
+    padding: 0 !important;
+    
+  }
+  ::ng-deep .k-grid {
+    width: 100% !important;
+
+    th[aria-colindex="2"],
+    th[aria-colindex="3"],
+    th[aria-colindex="4"],
+    td[aria-colindex="2"],
+    td[aria-colindex="3"],
+    td[aria-colindex="4"] {
+      display: none !important;
+    }
+  }
+
+  ::ng-deep .k-dialog {
+    width: 100vw !important;
+  }
+}
+
+// 📱 Tablette 577px - 768px : cache Pays uniquement
+@media (min-width: 577px) and (max-width: 768px) {
+  ::ng-deep .k-grid {
+    th[aria-colindex="4"],
+    td[aria-colindex="4"] {
+      display: none !important;
+    }
+  }
+
+  ::ng-deep .k-dialog {
+    width: 420px !important;
   }
 }

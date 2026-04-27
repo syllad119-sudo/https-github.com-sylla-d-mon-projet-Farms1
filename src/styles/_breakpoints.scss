@@ -1,0 +1,25 @@
+// src/styles/_breakpoints.scss
+
+$breakpoints: (
+  'sm':  576px,
+  'md':  768px,
+  'lg':  992px,
+  'xl':  1200px,
+  'xxl': 1400px,
+);
+
+// Mobile-first : styles appliqués AU-DESSUS de la taille donnée
+@mixin up($bp) {
+  $value: map-get($breakpoints, $bp);
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+// Desktop-first : styles appliqués EN-DESSOUS de la taille donnée
+@mixin down($bp) {
+  $value: map-get($breakpoints, $bp);
+  @media (max-width: ($value - 1px)) {
+    @content;
+  }
+}
