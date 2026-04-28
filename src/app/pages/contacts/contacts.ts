@@ -8,6 +8,7 @@ import { Contact } from '../../models/contact.model';
 import { KENDO_DIALOGS } from '@progress/kendo-angular-dialog';
 import { pencilIcon, trashIcon, SVGIcon } from '@progress/kendo-svg-icons';
 import { ContactService } from '../../services/contact.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contacts',
@@ -36,9 +37,22 @@ export class Contacts implements OnInit {
   isMobile = false;
   isTablet = false;
 
-  // déclaration correcte
+  // confirmation suppression
+  isConfirmDialogOpen = false;
+  contactToDelete: Contact | null = null;
+
+  // confirmation modification
+  isConfirmEditDialogOpen = false;
+  pendingEditForm: ContactForm | null = null;
+
   private platformId = inject(PLATFORM_ID);
+  private toastr = inject(ToastrService);
   public contactService = inject(ContactService);
+
+   /**
+   * Initialise le composant.
+   * Vérifie la taille de l'écran et charge la liste des contacts.
+   */
 
   ngOnInit(): void {
     this.checkScreen();
@@ -52,7 +66,10 @@ export class Contacts implements OnInit {
       this.showGrid = true;
     });
   }
-
+  /**
+   * Vérifie la taille de l'écran et met à jour les variables isMobile et isTablet.
+   * Déclenché au chargement et à chaque redimensionnement de la fenêtre.
+   */
   @HostListener('window:resize')
   checkScreen() {
     if (isPlatformBrowser(this.platformId)) {
@@ -61,11 +78,19 @@ export class Contacts implements OnInit {
     }
   }
 
+   /**
+   * Ouvre la modale pour ajouter un nouveau contact.
+   * Réinitialise le contact sélectionné et passe en mode création.
+   */
   openAddDialog(): void {
     this.selectedContact = null;
     this.isNewContact = true;
     this.isDialogOpen = true;
   }
+  /**
+   * Ouvre la modale pour modifier un contact existant.
+   * @param event - L'événement Kendo contenant les données du contact à modifier.
+   */
 
   editHandler(event: EditEvent): void {
     this.selectedContact = { ...event.dataItem };
@@ -73,22 +98,82 @@ export class Contacts implements OnInit {
     this.isDialogOpen = true;
   }
 
+  /**
+   * Gère la sauvegarde du formulaire contact.
+   * En mode création : ajoute directement le contact.
+   * En mode modification : ouvre la modale de confirmation avant de sauvegarder.
+   * @param form - Les données du formulaire soumis.
+   */
   onContactSaved(form: ContactForm): void {
     if (this.isNewContact) {
-      this.contactService.addContact(form).subscribe();
+      this.contactService.addContact(form).subscribe(() => {
+        this.toastr.success('Contact ajouté avec succès !');
+      });
+      this.isDialogOpen = false;
+      this.selectedContact = null;
     } else {
-      this.contactService.updateContact(this.selectedContact!.id, form).subscribe();
+      //  ouvre la confirmation avant de modifier
+      this.pendingEditForm = form;
+      this.isDialogOpen = false;
+      this.isConfirmEditDialogOpen = true;
     }
-    this.isDialogOpen = false;
+  }
+/**
+   * Confirme la modification du contact après validation dans la modale de confirmation.
+   * Appelle le service pour mettre à jour le contact et affiche un toast de succès.
+   */
+  confirmEdit(): void {
+    if (this.pendingEditForm && this.selectedContact) {
+      this.contactService.updateContact(this.selectedContact.id, this.pendingEditForm).subscribe(() => {
+        this.toastr.success('Contact modifié avec succès !');
+        this.pendingEditForm = null;
+        this.selectedContact = null;
+        this.isConfirmEditDialogOpen = false;
+      });
+    }
+  }
+ /**
+   * Annule la modification du contact et ferme la modale de confirmation.
+   */
+  cancelEdit(): void {
+    this.pendingEditForm = null;
     this.selectedContact = null;
+    this.isConfirmEditDialogOpen = false;
   }
 
+  /**
+   * Ferme la modale de contact sans sauvegarder.
+   */
   onDialogCancel(): void {
     this.isDialogOpen = false;
     this.selectedContact = null;
   }
-
+/**
+   * Ouvre la modale de confirmation avant de supprimer un contact.
+   * @param event - L'événement Kendo contenant les données du contact à supprimer.
+   */
   removeHandler(event: RemoveEvent): void {
-    this.contactService.removeContact(event.dataItem.id).subscribe();
+    this.contactToDelete = event.dataItem;
+    this.isConfirmDialogOpen = true;
+  }
+/**
+   * Confirme la suppression du contact après validation dans la modale de confirmation.
+   * Appelle le service pour supprimer le contact et affiche un toast d'erreur.
+   */
+  confirmDelete(): void {
+    if (this.contactToDelete) {
+      this.contactService.removeContact(this.contactToDelete.id).subscribe(() => {
+        this.toastr.error('Contact supprimé !');
+        this.contactToDelete = null;
+        this.isConfirmDialogOpen = false;
+      });
+    }
+  }
+/**
+   * Annule la suppression du contact et ferme la modale de confirmation.
+   */
+  cancelDelete(): void {
+    this.contactToDelete = null;
+    this.isConfirmDialogOpen = false;
   }
 }

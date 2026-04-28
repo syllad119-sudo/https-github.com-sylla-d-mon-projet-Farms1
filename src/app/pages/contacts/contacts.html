@@ -5,7 +5,7 @@
         <img src="../../../assets/excel3.png" alt="Excel" class="toolbar-img" />
       </a>
       <button class="btn-nouveau-contact" (click)="openAddDialog()">
-        <img src="../../../assets/adduser2.png" alt="Ajouter" class="btn-icon" />
+        <img src="../../../assets/adduser3.png" alt="Ajouter" class="btn-icon" />
         Nouveau contact
       </button>
     </div>
@@ -27,7 +27,7 @@
 
     <kendo-grid-command-column title="Action" [width]="30">
       <ng-template kendoGridCellTemplate>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 8px">
+        <div style="display: flex; justify-content: center; align-items: center; gap:10px">
           <button kendoGridEditCommand themeColor="base" aria-label="Éditer">
             <img src="../../../assets/nlogoedit.png" alt="Edit Icon" class="icon-button" />
           </button>
@@ -58,5 +58,43 @@
       (cancel)="onDialogCancel()"
     >
     </app-contact>
+  </kendo-dialog>
+}
+
+<!-- Confirmation de la suppression d'un contact -->
+@if (isConfirmDialogOpen) {
+  <kendo-dialog title="Confirmation" [width]="400" (close)="cancelDelete()">
+    <p style="text-align:center; padding: 16px;">
+      Voulez-vous vraiment supprimer ce contact ?
+    </p>
+    <kendo-dialog-actions>
+      <button kendoButton (click)="cancelDelete()"
+        style="padding: 8px 24px; background:#f5f5f5; color:#333; border:1px solid #ccc; border-radius:6px; font-size:14px; cursor:pointer;">
+        Annuler
+      </button>
+      <button kendoButton (click)="confirmDelete()"
+        style="padding: 8px 24px; background:#e53935; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer;">
+        Supprimer
+      </button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+}
+
+<!-- Confirmation de modification du contact -->
+@if (isConfirmEditDialogOpen) {
+  <kendo-dialog title="Confirmation" [width]="400" (close)="cancelEdit()">
+    <p style="text-align:center; padding: 16px;">
+      Voulez-vous vraiment modifier ce contact ?
+    </p>
+    <kendo-dialog-actions>
+      <button kendoButton (click)="cancelEdit()"
+        style="padding: 8px 24px; background:#f5f5f5; color:#333; border:1px solid #ccc; border-radius:6px; font-size:14px; cursor:pointer;">
+        Annuler
+      </button>
+      <button kendoButton (click)="confirmEdit()"
+        style="padding: 8px 24px; background:#8dc63f; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer;">
+        Modifier
+      </button>
+    </kendo-dialog-actions>
   </kendo-dialog>
 }
