@@ -8,6 +8,14 @@
   height: 100%;
   box-sizing: border-box;
 
+  .form-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   h2 {
     text-align: center;
     font-size: 18px;
@@ -23,7 +31,6 @@
 
     input,
     textarea {
-      width: 90%;
       margin: 5px;
       padding: 12px;
       border: 1px solid #ccc;
@@ -54,15 +61,6 @@
       resize: vertical;
     }
 
-    &::after {
-      content: '*';
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: #aaa;
-      font-size: 12px;
-    }
-
     span {
       color: #e53935;
       font-size: 12px;
@@ -74,7 +72,9 @@
     display: flex;
     justify-content: center;
     gap: 16px;
-    margin: 70px 0;
+    margin: 24px 0;
+    padding: 16px 0;
+    flex-shrink: 0;
 
     button {
       padding: 5px 20px;
@@ -108,5 +108,52 @@
         }
       }
     }
+  }
+}
+
+// ─── RESPONSIVE 
+@media (max-width: 1024px) {
+  .contact-container {
+    overflow: hidden;
+  }
+
+  .form-content {
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+  }
+
+  .modal-actions {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+    flex-shrink: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-container {
+    overflow: hidden;
+  }
+
+  .form-content {
+    max-height: calc(100vh - 200px); // 
+    overflow-y: auto;
+  }
+
+  .modal-actions {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+   .form-group textarea {
+    min-height: 100px !important;
   }
 }

@@ -54,15 +54,16 @@
   height: 20px;
 }
 
-// ─── GRID ───────────────────────────────────────────────
+// GRID
 .grid-container {
   width: 100%;
-  max-width: 1600px;  // ← jamais plus large que 1600px
-  margin: 0 auto;     // ← centré
+  max-width: 1600px;
+  margin: 0 auto;
   height: auto;
   box-sizing: border-box;
-  overflow-x: hidden;  // ← scroll horizontal si besoin
-  
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
 }
 
 * {
@@ -70,10 +71,10 @@
 }
 
 body {
- margin: 0;
+  margin: 0;
 }
 
-// ─── MODALE KENDO ───────────────────────────────────────
+//  MODALE KENDO 
 ::ng-deep .k-dialog-wrapper {
   display: flex !important;
   justify-content: flex-end !important;
@@ -92,6 +93,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 500px !important;
+  
 
   .k-dialog-titlebar {
     background: #fff;
@@ -114,47 +116,67 @@ body {
   }
 }
 
-// ─── RESPONSIVE ─────────────────────────────────────────
+// RESPONSIVE
 
-// 📱 Mobile < 576px : Société + Action uniquement
+//  Mobile < 576px : Société + Action uniquement
 @media (max-width: 576px) {
   .grid-toolbar {
     margin-top: 16px;
-    justify-content: center;
+    justify-content: flex-end;
+    padding : 0 10px;
   }
 
-  .grid-container{
-    padding: 0 !important;
-    
-  }
-  ::ng-deep .k-grid {
-    width: 100% !important;
-
-    th[aria-colindex="2"],
-    th[aria-colindex="3"],
-    th[aria-colindex="4"],
-    td[aria-colindex="2"],
-    td[aria-colindex="3"],
-    td[aria-colindex="4"] {
-      display: none !important;
-    }
+  .grid-container {
+    padding: 0 12px 24px 12px!important;
+  
   }
 
-  ::ng-deep .k-dialog {
+   ::ng-deep .k-dialog {
     width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    bottom: 0 !important;
+
+    .k-dialog-content {
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
   }
 }
 
-// 📱 Tablette 577px - 768px : cache Pays uniquement
-@media (min-width: 577px) and (max-width: 768px) {
-  ::ng-deep .k-grid {
-    th[aria-colindex="4"],
-    td[aria-colindex="4"] {
-      display: none !important;
-    }
+// Tablette 577px - 1024px : cache Pays uniquement
+@media (min-width: 577px) and (max-width: 1024px) {
+  .grid-toolbar {
+    justify-content: flex-end; // boutons toujours à droite
+    padding: 0 20px; //  espace gauche/droite
+  }
+
+  .grid-container {
+    padding: 0 16px 40px 12px !important; //  espace gauche/droite du container
   }
 
   ::ng-deep .k-dialog {
     width: 420px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-container {
+    overflow: hidden;
+  }
+
+  .form-content {
+    max-height: calc(100vh - 200px); // 👈 un peu plus petit que 1024 car écran plus petit
+    overflow-y: auto;
+  }
+
+  .modal-actions {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+    flex-shrink: 0;
+    margin: 0;
   }
 }

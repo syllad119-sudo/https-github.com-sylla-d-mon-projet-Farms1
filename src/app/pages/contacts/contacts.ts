@@ -1,8 +1,8 @@
 import { ContactComponent } from './../../components/contact-modal/contact-modal';
 import { ContactForm } from './../../models/contactForm.model';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { KENDO_GRID, EditEvent, RemoveEvent } from '@progress/kendo-angular-grid';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Contact } from '../../models/contact.model';
 import { KENDO_DIALOGS } from '@progress/kendo-angular-dialog';
@@ -33,9 +33,16 @@ export class Contacts implements OnInit {
   isNewContact = false;
   showGrid = false;
 
+  isMobile = false;
+  isTablet = false;
+
+  // déclaration correcte
+  private platformId = inject(PLATFORM_ID);
   public contactService = inject(ContactService);
 
   ngOnInit(): void {
+    this.checkScreen();
+
     this.contactService.contacts$.subscribe((data: Contact[]) => {
       this.contacts = data;
       if (data.length > 0) this.showGrid = true;
@@ -44,6 +51,14 @@ export class Contacts implements OnInit {
     this.contactService.getContacts().subscribe(() => {
       this.showGrid = true;
     });
+  }
+
+  @HostListener('window:resize')
+  checkScreen() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth <= 576;
+      this.isTablet = window.innerWidth > 576 && window.innerWidth <= 768;
+    }
   }
 
   openAddDialog(): void {

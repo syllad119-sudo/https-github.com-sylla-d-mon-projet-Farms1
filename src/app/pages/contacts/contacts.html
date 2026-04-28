@@ -15,19 +15,19 @@
     [data]="(contactService.contacts$ | async) ?? []"
     (edit)="editHandler($event)"
     (remove)="removeHandler($event)"
-  >
-    <kendo-grid-column field="societe" title="Société" [width]="60">
+    [autoSize]="true">
+<kendo-grid-column field="societe" title="Société" [width]="60" [hidden]="false">
     </kendo-grid-column>
-    <kendo-grid-column field="nom" title="Nom" [width]="60">
+<kendo-grid-column field="nom" title="Nom" [width]="60" [hidden]="isMobile">
     </kendo-grid-column>
-    <kendo-grid-column field="prenom" title="Prénom" [width]="60">
+<kendo-grid-column field="prenom" title="Prénom" [width]="60" [hidden]="isMobile">
     </kendo-grid-column>
-    <kendo-grid-column field="pays" title="Pays" [width]="60">
+<kendo-grid-column field="pays" title="Pays" [width]="60" [hidden]="isMobile || isTablet">
     </kendo-grid-column>
 
     <kendo-grid-command-column title="Action" [width]="30">
       <ng-template kendoGridCellTemplate>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 5px">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 8px">
           <button kendoGridEditCommand themeColor="base" aria-label="Éditer">
             <img src="../../../assets/nlogoedit.png" alt="Edit Icon" class="icon-button" />
           </button>
@@ -42,7 +42,7 @@
       </ng-template>
     </kendo-grid-command-column>
   </kendo-grid>
-</div>
+
 
 @if (isDialogOpen) {
   <kendo-dialog
