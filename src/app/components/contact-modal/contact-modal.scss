@@ -139,7 +139,7 @@
   }
 
   .form-content {
-    max-height: calc(100vh - 200px); // 
+    max-height: calc(100vh - 220px); // 
     overflow-y: auto;
   }
 
@@ -154,6 +154,6 @@
   }
 
    .form-group textarea {
-    min-height: 100px !important;
+    min-height: 60px !important;
   }
 }

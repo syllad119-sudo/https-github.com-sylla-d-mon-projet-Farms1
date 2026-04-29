@@ -6,7 +6,11 @@ import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
 import { Contact } from '../../models/contact.model';
 import { ContactForm } from '../../models/contactForm.model';
 import { SelectionBesoinsComponent } from '../selection-besoins/selection-besoins';
-//                                                                
+/**
+ * Composant modal de formulaire contact.
+ * Permet d'ajouter un nouveau contact ou de modifier un contact existant.
+ * Émet les événements `save` et `cancel` vers le composant parent.
+ */
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -15,14 +19,20 @@ import { SelectionBesoinsComponent } from '../selection-besoins/selection-besoin
   styleUrl: './contact-modal.scss',
 })
 export class ContactComponent implements OnInit {
+  /** Contact à modifier. Null si on est en mode création. */
   @Input() contact: Contact | null = null;
+   /** Indique si on est en mode création (true) ou modification (false). */
   @Input() isNew = false;
-  @Output() save = new EventEmitter<ContactForm>();
-  @Output() cancel = new EventEmitter<void>();
 
+  /** Événement émis lors de la soumission du formulaire avec les données saisies. */
+  @Output() save = new EventEmitter<ContactForm>();
+  /** Événement émis lors de l'annulation du formulaire. */
+  @Output() cancel = new EventEmitter<void>();
+  
+/** Groupe de contrôles du formulaire réactif. */
   contactForm!: FormGroup;
 
-  //  Liste des besoins disponibles
+/** Liste de tous les besoins disponibles affichés dans le composant de sélection. */
   besoinsDisponibles: string[] = [
     'Contrôle de la production - Production control',
     'Fiabilité des informations - Reliability',
@@ -37,8 +47,13 @@ export class ContactComponent implements OnInit {
     'Gestion des parcelles - Parcel management',
   ];
 
-  // État local de la sélection
-  besoinsSelectionnes: string[] = [];
+   /** Liste des besoins actuellement sélectionnés par l'utilisateur. */
+   besoinsSelectionnes: string[] = [];
+   /**
+   * Initialise le formulaire réactif avec les valeurs du contact existant
+   * ou des valeurs vides si on est en mode création.
+   * Initialise également la sélection des besoins en mode édition.
+   */
 
   ngOnInit(): void {
     this.contactForm = new FormGroup({
@@ -56,12 +71,21 @@ export class ContactComponent implements OnInit {
     this.besoinsSelectionnes = this.contact?.besoins ?? [];
   }
 
-  //  Appelé par le composant enfant quand l'utilisateur clique sur un bouton
+ /**
+   * Appelé par le composant enfant `SelectionBesoinsComponent`
+   * lorsque l'utilisateur clique sur un besoin.
+   * Met à jour la sélection locale et synchronise avec le FormGroup.
+   * @param selection - Tableau des besoins sélectionnés.
+   */
   onBesoinsChange(selection: string[]): void {
     this.besoinsSelectionnes = selection;
     this.contactForm.get('besoins')?.setValue(selection); // ← sync avec le FormGroup
   }
-
+/**
+   * Gère la soumission du formulaire.
+   * Si le formulaire est valide, émet l'événement `save` avec les données saisies.
+   * Sinon, marque tous les champs comme touchés pour afficher les erreurs de validation.
+   */
   handleSubmit(): void {
     if (this.contactForm.valid) {
       this.save.emit(this.contactForm.value as ContactForm);
@@ -69,8 +93,11 @@ export class ContactComponent implements OnInit {
       this.contactForm.markAllAsTouched();
     }
   }
-
-  onCancel(): void {
+/**
+   * Gère l'annulation du formulaire.
+   * Émet l'événement `cancel` vers le composant parent pour fermer la modale.
+   */
+ onCancel(): void {
     this.cancel.emit();
   }
 }

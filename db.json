@@ -134,16 +134,6 @@
       "pays": "Italie",
       "commentaire": "Producteur local, cherche débouchés à l'export.",
       "id": "15"
-    },
-    {
-      "id": "16",
-      "societe": "Prime Bananas",
-      "nom": "Koffi",
-      "prenom": "Jean",
-      "email": "j.ko@prime-banana-export.com",
-      "telephone": "+225 07 58 23 91 64",
-      "pays": "Côte d'Ivoire",
-      "commentaire": "Contact intéressé par le pack starter."
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

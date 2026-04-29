@@ -1,10 +1,11 @@
 <div class="besoins-grid">
-  <button
-    *ngFor="let item of items"
-    type="button"
-    class="besoin-btn"
-    [class.selected]="isSelected(item)"
-    (click)="toggleItem(item)">
-    {{ item }}
-  </button>
+  @for (item of items; track item) {
+    <button
+      type="button"
+      class="besoin-btn"
+      [class.selected]="isSelected(item)"
+      (click)="toggleItem(item)">
+      {{ item }}
+    </button>
+  }
 </div>
