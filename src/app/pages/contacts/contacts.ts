@@ -1,20 +1,26 @@
 import { ContactComponent } from './../../components/contact-modal/contact-modal';
 import { ContactForm } from './../../models/contactForm.model';
-import { Component, OnInit, inject, HostListener, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, inject, HostListener, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { KENDO_GRID, EditEvent, RemoveEvent } from '@progress/kendo-angular-grid';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Contact } from '../../models/contact.model';
 import { KENDO_DIALOGS } from '@progress/kendo-angular-dialog';
 import { pencilIcon, trashIcon, SVGIcon } from '@progress/kendo-svg-icons';
 import { ContactService } from '../../services/contact.service';
 import { ToastrService } from 'ngx-toastr';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+dayjs.extend(utc);
+dayjs.extend(timezone);
+import { KENDO_GRID, EditEvent, RemoveEvent, ExcelModule, GridComponent } from '@progress/kendo-angular-grid';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
   imports: [
     KENDO_GRID,
+    ExcelModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -27,6 +33,12 @@ import { ToastrService } from 'ngx-toastr';
 export class Contacts implements OnInit {
   editIcon: SVGIcon = pencilIcon;
   deleteIcon: SVGIcon = trashIcon;
+  currentDate = dayjs().tz('Europe/Paris').format('DD-MM-YYYY'); 
+  @ViewChild(GridComponent) grid!: GridComponent;
+
+  get dialogWidth(): number {
+  return window.innerWidth <= 576 ? window.innerWidth - 20 : 600;
+}
 
   contacts: Contact[] = [];
   isDialogOpen = false;
@@ -49,7 +61,7 @@ export class Contacts implements OnInit {
   private toastr = inject(ToastrService);
   public contactService = inject(ContactService);
 
-   /**
+  /**
    * Initialise le composant.
    * Vérifie la taille de l'écran et charge la liste des contacts.
    */
@@ -78,7 +90,7 @@ export class Contacts implements OnInit {
     }
   }
 
-   /**
+  /**
    * Ouvre la modale pour ajouter un nouveau contact.
    * Réinitialise le contact sélectionné et passe en mode création.
    */
@@ -118,21 +130,23 @@ export class Contacts implements OnInit {
       this.isConfirmEditDialogOpen = true;
     }
   }
-/**
+  /**
    * Confirme la modification du contact après validation dans la modale de confirmation.
    * Appelle le service pour mettre à jour le contact et affiche un toast de succès.
    */
   confirmEdit(): void {
     if (this.pendingEditForm && this.selectedContact) {
-      this.contactService.updateContact(this.selectedContact.id, this.pendingEditForm).subscribe(() => {
-        this.toastr.success('Contact modifié avec succès !');
-        this.pendingEditForm = null;
-        this.selectedContact = null;
-        this.isConfirmEditDialogOpen = false;
-      });
+      this.contactService
+        .updateContact(this.selectedContact.id, this.pendingEditForm)
+        .subscribe(() => {
+          this.toastr.success('Contact modifié avec succès !');
+          this.pendingEditForm = null;
+          this.selectedContact = null;
+          this.isConfirmEditDialogOpen = false;
+        });
     }
   }
- /**
+  /**
    * Annule la modification du contact et ferme la modale de confirmation.
    */
   cancelEdit(): void {
@@ -148,7 +162,7 @@ export class Contacts implements OnInit {
     this.isDialogOpen = false;
     this.selectedContact = null;
   }
-/**
+  /**
    * Ouvre la modale de confirmation avant de supprimer un contact.
    * @param event - L'événement Kendo contenant les données du contact à supprimer.
    */
@@ -156,7 +170,7 @@ export class Contacts implements OnInit {
     this.contactToDelete = event.dataItem;
     this.isConfirmDialogOpen = true;
   }
-/**
+  /**
    * Confirme la suppression du contact après validation dans la modale de confirmation.
    * Appelle le service pour supprimer le contact et affiche un toast d'erreur.
    */
@@ -169,11 +183,19 @@ export class Contacts implements OnInit {
       });
     }
   }
-/**
+  /**
    * Annule la suppression du contact et ferme la modale de confirmation.
    */
   cancelDelete(): void {
     this.contactToDelete = null;
     this.isConfirmDialogOpen = false;
   }
+
+  /**
+   * Télécharge un fichier Excel avec un nom contenant la date du jour.
+   */
+ telechargerExcel() {
+  this.currentDate = dayjs().tz('Europe/Paris').format('DD-MM-YYYY');
+  this.grid.saveAsExcel();
+}
 }

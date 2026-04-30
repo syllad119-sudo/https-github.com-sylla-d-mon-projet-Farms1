@@ -1,8 +1,8 @@
 <div class="grid-container">
   <div class="grid-toolbar">
     <div class="toolbar-actions">
-      <a href="assets/fichiers/fichier.xlsx" download="fichier.xlsx">
-        <img src="../../../assets/excel3.png" alt="Excel" class="toolbar-img" />
+      <a (click)="telechargerExcel()">
+        <img src="../../../assets/excelnew.png" alt="Excel" class="toolbar-img" />
       </a>
       <button class="btn-nouveau-contact" (click)="openAddDialog()">
         <img src="../../../assets/adduser3.png" alt="Ajouter" class="btn-icon" />
@@ -15,25 +15,32 @@
     [data]="(contactService.contacts$ | async) ?? []"
     (edit)="editHandler($event)"
     (remove)="removeHandler($event)"
-    [autoSize]="true">
-<kendo-grid-column field="societe" title="Société" [width]="60" [hidden]="false">
+    [autoSize]="true"
+  >
+
+  <kendo-grid-excel fileName="contacts-farms-{{ currentDate }}.xlsx"></kendo-grid-excel>
+
+    <kendo-grid-column field="societe" title="Société" [width]="60" [hidden]="false">
     </kendo-grid-column>
-<kendo-grid-column field="nom" title="Nom" [width]="60" [hidden]="isMobile">
+    <kendo-grid-column field="nom" title="Nom" [width]="60" [hidden]="isMobile">
     </kendo-grid-column>
-<kendo-grid-column field="prenom" title="Prénom" [width]="60" [hidden]="isMobile">
+    <kendo-grid-column field="prenom" title="Prénom" [width]="60" [hidden]="isMobile">
     </kendo-grid-column>
-<kendo-grid-column field="pays" title="Pays" [width]="60" [hidden]="isMobile || isTablet">
+    <kendo-grid-column field="pays" title="Pays" [width]="60" [hidden]="isMobile || isTablet">
     </kendo-grid-column>
 
     <kendo-grid-command-column title="Action" [width]="30">
       <ng-template kendoGridCellTemplate>
-        <div style="display: flex; justify-content: center; align-items: center; gap:10px">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px">
           <button kendoGridEditCommand themeColor="base" aria-label="Éditer">
             <img src="../../../assets/nlogoedit.png" alt="Edit Icon" class="icon-button" />
           </button>
-          <button kendoGridRemoveCommand themeColor="error"
-            [svgIcon]="deleteIcon" aria-label="Supprimer">
-          </button>
+          <button
+            kendoGridRemoveCommand
+            themeColor="error"
+            [svgIcon]="deleteIcon"
+            aria-label="Supprimer"
+          ></button>
         </div>
       </ng-template>
       <ng-template kendoGridEditTemplate>
@@ -43,58 +50,99 @@
     </kendo-grid-command-column>
   </kendo-grid>
 
-
-@if (isDialogOpen) {
-  <kendo-dialog
-    [title]="isNewContact ? 'Nouveau Contact' : 'Modifier Contact'"
-    [minWidth]="300"
-    [width]="500"
-    (close)="onDialogCancel()"
-  >
-    <app-contact
-      [isNew]="isNewContact"
-      [contact]="selectedContact"
-      (save)="onContactSaved($event)"
-      (cancel)="onDialogCancel()"
+  @if (isDialogOpen) {
+    <kendo-dialog
+      class="tittle-dialog"
+      [title]="isNewContact ? 'Nouveau Contact' : 'Modifier Contact'"
+      [minWidth]="300"
+      [width]="dialogWidth"
+      (close)="onDialogCancel()"
     >
-    </app-contact>
-  </kendo-dialog>
-}
+      <app-contact
+        [isNew]="isNewContact"
+        [contact]="selectedContact"
+        (save)="onContactSaved($event)"
+        (cancel)="onDialogCancel()"
+      >
+      </app-contact>
+    </kendo-dialog>
+  }
 
-<!-- Confirmation de la suppression d'un contact -->
-@if (isConfirmDialogOpen) {
-  <kendo-dialog title="Confirmation" [width]="400" (close)="cancelDelete()">
-    <p style="text-align:center; padding: 16px;">
-      Voulez-vous vraiment supprimer ce contact ?
-    </p>
-    <kendo-dialog-actions>
-      <button kendoButton (click)="cancelDelete()"
-        style="padding: 8px 24px; background:#f5f5f5; color:#333; border:1px solid #ccc; border-radius:6px; font-size:14px; cursor:pointer;">
-        Annuler
-      </button>
-      <button kendoButton (click)="confirmDelete()"
-        style="padding: 8px 24px; background:#e53935; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer;">
-        Supprimer
-      </button>
-    </kendo-dialog-actions>
-  </kendo-dialog>
-}
+  <!-- Confirmation de la suppression d'un contact -->
+  @if (isConfirmDialogOpen) {
+    <kendo-dialog title="Confirmation" [width]="400" (close)="cancelDelete()">
+      <p style="text-align: center; padding: 16px">Voulez-vous vraiment supprimer ce contact ?</p>
+      <kendo-dialog-actions>
+        <button
+          kendoButton
+          (click)="cancelDelete()"
+          style="
+            padding: 8px 24px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+          "
+        >
+          Annuler
+        </button>
+        <button
+          kendoButton
+          (click)="confirmDelete()"
+          style="
+            padding: 8px 24px;
+            background: #e53935;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+          "
+        >
+          Supprimer
+        </button>
+      </kendo-dialog-actions>
+    </kendo-dialog>
+  }
 
-<!-- Confirmation de modification du contact -->
-@if (isConfirmEditDialogOpen) {
-  <kendo-dialog title="Confirmation" [width]="400" (close)="cancelEdit()">
-    <p style="text-align:center; padding: 16px;">
-      Voulez-vous vraiment modifier ce contact ?
-    </p>
-    <kendo-dialog-actions>
-      <button kendoButton (click)="cancelEdit()"
-        style="padding: 8px 24px; background:#f5f5f5; color:#333; border:1px solid #ccc; border-radius:6px; font-size:14px; cursor:pointer;">
-        Annuler
-      </button>
-      <button kendoButton (click)="confirmEdit()"
-        style="padding: 8px 24px; background:#8dc63f; color:#fff; border:none; border-radius:6px; font-size:14px; cursor:pointer;">
-        Modifier
-      </button>
-    </kendo-dialog-actions>
-  </kendo-dialog>
-}
+  <!-- Confirmation de modification du contact -->
+  @if (isConfirmEditDialogOpen) {
+    <kendo-dialog title="Confirmation" [width]="400" (close)="cancelEdit()">
+      <p style="text-align: center; padding: 16px">Voulez-vous vraiment modifier ce contact ?</p>
+      <kendo-dialog-actions>
+        <button
+          kendoButton
+          (click)="cancelEdit()"
+          style="
+            padding: 8px 24px;
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+          "
+        >
+          Annuler
+        </button>
+        <button
+          kendoButton
+          (click)="confirmEdit()"
+          style="
+            padding: 8px 24px;
+            background: #8dc63f;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+          "
+        >
+          Modifier
+        </button>
+      </kendo-dialog-actions>
+    </kendo-dialog>
+  }
+</div>

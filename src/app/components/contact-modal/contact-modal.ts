@@ -34,17 +34,17 @@ export class ContactComponent implements OnInit {
 
 /** Liste de tous les besoins disponibles affichés dans le composant de sélection. */
   besoinsDisponibles: string[] = [
-    'Contrôle de la production - Production control',
-    'Fiabilité des informations - Reliability',
-    'Précision des informations - Accuracy',
-    'Maladies - Diseases',
-    'Gestion de la main d\'œuvre - Workforce management',
-    'Prédictions des récoltes - Crop forecasts',
-    'Traçabilité - Traceability',
-    'Vols & Pertes - Theft & Loss',
-    'Productivité performance - Productivity and perf.',
-    'Maîtrise des coûts - Cost control',
-    'Gestion des parcelles - Parcel management',
+    'Contrôle de la production ',
+    'Fiabilité des informations ',
+    'Précision des informations ',
+    'Maladies ',
+    'Gestion de la main d\'œuvre',
+    'Prédictions des récoltes ',
+    'Traçabilité ',
+    'Vols & Pertes ',
+    'Productivité performance ',
+    'Maîtrise des coûts ',
+    'Gestion des parcelles ',
   ];
 
    /** Liste des besoins actuellement sélectionnés par l'utilisateur. */

@@ -3,25 +3,30 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 0 16px;
+  max-width: 900px;
+  margin: auto;
   padding: 16px;
-  width: 100%;
+  // width: 100%;
   height: 100%;
   box-sizing: border-box;
+  overflow-x: hidden; 
 
   .form-content {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden; 
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
   h2 {
-    text-align: center;
-    font-size: 18px;
+    text-align: left;
+    font-size: 16px;
     font-weight: 500;
     margin-bottom: 12px;
-    color: #222;
+    // color: #222;
   }
 
   .form-group {
@@ -31,7 +36,8 @@
 
     input,
     textarea {
-      margin: 5px;
+      margin: 5px 0; 
+      width: 100%;   
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
@@ -57,7 +63,7 @@
     }
 
     textarea {
-      min-height: 140px;
+      min-height: 100px;
       resize: vertical;
     }
 
@@ -89,18 +95,14 @@
         color: #333;
         border: 1px solid #ccc;
 
-        &:hover {
-          background: #e0e0e0;
-        }
+        &:hover { background: #e0e0e0; }
       }
 
       &[type='submit'] {
         background: #6abf69;
         color: #fff;
 
-        &:hover {
-          background: #57a85a;
-        }
+        &:hover { background: #57a85a; }
 
         &:disabled {
           background: #a5d6a7;
@@ -111,8 +113,19 @@
   }
 }
 
-// ─── RESPONSIVE 
-@media (max-width: 1024px) {
+// ─── RESPONSIVE ────────────────────────────────────────
+::ng-deep .k-dialog {
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+}
+
+::ng-deep .k-dialog-content {
+  overflow-x: hidden !important;
+  padding: 0 !important;
+  max-height:  none !important;
+}
+
+@media (max-width: 1200px) {
   .contact-container {
     overflow: hidden;
   }
@@ -135,25 +148,31 @@
 
 @media (max-width: 576px) {
   .contact-container {
+    padding: 0 16px; 
     overflow: hidden;
   }
 
   .form-content {
-    max-height: calc(100vh - 220px); // 
+    max-height: calc(100vh - 160px);
     overflow-y: auto;
+  }
+
+  .besoins-grid {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 6px;
   }
 
   .modal-actions {
     position: sticky;
     bottom: 0;
     background: #fff;
-    padding: 16px 0;
+    padding: 12px 0;
     border-top: 1px solid #eee;
     flex-shrink: 0;
     margin: 0;
   }
 
-   .form-group textarea {
+  .form-group textarea {
     min-height: 60px !important;
   }
 }

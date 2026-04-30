@@ -9,4 +9,5 @@ export interface Contact {
   pays: string;
   besoins: string[];
   commentaire: string;
+  dateCreation: string;
 }
