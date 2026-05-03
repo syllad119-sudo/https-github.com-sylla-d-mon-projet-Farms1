@@ -55,6 +55,11 @@ export class ContactComponent implements OnInit {
    * Initialise également la sélection des besoins en mode édition.
    */
 
+  /**
+ * Liste des langues disponibles pour la sélection de la langue préférée du contact.
+ * Chaque entrée contient le code ISO de la langue, son libellé et le chemin vers son drapeau.
+ */
+
    langues = [
   { code: 'FR', label: 'Français',  flag: '../../../assets/images/france.png' },
   { code: 'EN', label: 'Anglais',   flag: '../../../assets/images/royaume-uni.png' },

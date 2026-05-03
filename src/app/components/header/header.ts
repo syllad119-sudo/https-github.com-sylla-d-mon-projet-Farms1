@@ -10,32 +10,44 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./header.scss'],
 })
 export class Header {
+  /** Indique si le menu déroulant des langues est ouvert ou fermé. */
   isOpen = false;
+
+  /** Code de la langue actuellement sélectionnée. */
   selectedLang = 'FR';
 
   private translate = inject(TranslateService);
   private cdr = inject(ChangeDetectorRef);
 
+  /**
+   * Dictionnaire associant chaque code de langue au chemin de son drapeau.
+   */
   flags: { [key: string]: string } = {
-  FR: 'assets/images/france.png',
-  EN: 'assets/images/royaume-uni.png',
-  ES: 'assets/images/drapeau.png',
-  PT: 'assets/images/bresil.png',
-};
+    FR: 'assets/images/france.png',
+    EN: 'assets/images/royaume-uni.png',
+    ES: 'assets/images/drapeau.png',
+    PT: 'assets/images/bresil.png',
+  };
 
-  constructor() {
-    this.translate.setDefaultLang('fr');
-    this.translate.use('fr');
-  }
+ constructor() {
+  this.translate.use('fr');
+}
 
+  /**
+   * Ouvre ou ferme le menu déroulant des langues.
+   */
   toggleMenu() {
     this.isOpen = !this.isOpen;
   }
 
+  /**
+   * Sélectionne une nouvelle langue et met à jour l'interface.
+   * @param lang - Le code de la langue sélectionnée (ex: 'FR', 'EN', 'ES', 'PT').
+   */
   selectLang(lang: string) {
-  this.selectedLang = lang;
-  this.translate.use(lang.toLowerCase());
-  this.isOpen = false;
-  this.cdr.detectChanges();
-}
+    this.selectedLang = lang;
+    this.translate.use(lang.toLowerCase());
+    this.isOpen = false;
+    this.cdr.detectChanges();
+  }
 }
