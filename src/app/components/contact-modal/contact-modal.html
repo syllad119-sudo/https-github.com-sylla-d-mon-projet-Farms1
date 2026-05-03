@@ -46,6 +46,16 @@
         }
       </div>
 
+   <div class="form-group langue-group">
+  <h2>Langue préférée</h2>
+  <label class="langue-option" *ngFor="let lang of langues">
+    <input type="radio" formControlName="langue" [value]="lang.code" />
+    <!-- axe-disable-next-line image-alt -->
+ <img [src]="lang.flag" [alt]="lang.code" />
+    <span>{{ lang.label }}</span>
+  </label>
+</div>
+
       <div class="form-group">
         <label class="besoins-label"></label>
         <h2>Vos besoins</h2>

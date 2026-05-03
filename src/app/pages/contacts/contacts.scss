@@ -154,8 +154,8 @@ body {
   }
 }
 
-// Tablette 577px - 1024px cache Pays uniquement
-@media (min-width: 577px) and (max-width: 1200px) {
+// Tablette 577px - 768px cache Pays uniquement
+@media (min-width: 577px) and (max-width: 768px) {
   .grid-toolbar {
     justify-content: flex-end; 
     padding: 0 20px; 
@@ -163,6 +163,7 @@ body {
 
   .grid-container {
     padding: 0 16px 40px 12px !important; 
+  }
 
   ::ng-deep .k-dialog {
     width: 420px !important;
@@ -188,5 +189,4 @@ body {
     flex-shrink: 0;
     margin: 0;
   }
-}
 }

@@ -55,6 +55,13 @@ export class ContactComponent implements OnInit {
    * Initialise également la sélection des besoins en mode édition.
    */
 
+   langues = [
+  { code: 'FR', label: 'Français',  flag: '../../../assets/images/france.png' },
+  { code: 'EN', label: 'Anglais',   flag: '../../../assets/images/royaume-uni.png' },
+  { code: 'ES', label: 'Espagnol',  flag: '../../../assets/images/drapeau.png' },
+  { code: 'PT', label: 'Portugais', flag: '../../../assets/images/bresil.png' },
+];
+
   ngOnInit(): void {
     this.contactForm = new FormGroup({
       societe:     new FormControl(this.contact?.societe ?? '',     [Validators.required, Validators.minLength(2)]),
@@ -63,7 +70,8 @@ export class ContactComponent implements OnInit {
       email:       new FormControl(this.contact?.email ?? '',       [Validators.required, Validators.email]),
       telephone:   new FormControl(this.contact?.telephone ?? '',   [Validators.required]),
       pays:        new FormControl(this.contact?.pays ?? '',        [Validators.required, Validators.minLength(2)]),
-      besoins:     new FormControl(this.contact?.besoins ?? []),    //  ajouté ici
+      langue:      new FormControl(this.contact?.langue ?? 'FR',   [Validators.required]),
+      besoins:     new FormControl(this.contact?.besoins ?? []),   
       commentaire: new FormControl(this.contact?.commentaire ?? ''),
     });
 

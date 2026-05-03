@@ -6,6 +6,7 @@ export interface ContactForm {
   email: string;
   telephone: string;
   pays: string;
+  langue: string;
   besoins: string[];
   commentaire: string;
 }

@@ -1,7 +1,7 @@
 import { ContactComponent } from './../../components/contact-modal/contact-modal';
 import { ContactForm } from './../../models/contactForm.model';
-import { Component, OnInit, inject, HostListener, PLATFORM_ID, ViewChild } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { Component, OnInit, inject, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Contact } from '../../models/contact.model';
 import { KENDO_DIALOGS } from '@progress/kendo-angular-dialog';
@@ -14,6 +14,7 @@ import timezone from 'dayjs/plugin/timezone';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 import { KENDO_GRID, EditEvent, RemoveEvent, ExcelModule, GridComponent } from '@progress/kendo-angular-grid';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-contacts',
@@ -36,8 +37,8 @@ export class Contacts implements OnInit {
   currentDate = dayjs().tz('Europe/Paris').format('DD-MM-YYYY'); 
   @ViewChild(GridComponent) grid!: GridComponent;
 
-  get dialogWidth(): number {
-  return window.innerWidth <= 576 ? window.innerWidth - 20 : 600;
+get dialogWidth(): number {
+  return this.isMobile ? 356 : 600;
 }
 
   contacts: Contact[] = [];
@@ -57,9 +58,10 @@ export class Contacts implements OnInit {
   isConfirmEditDialogOpen = false;
   pendingEditForm: ContactForm | null = null;
 
-  private platformId = inject(PLATFORM_ID);
+private breakpointObserver = inject(BreakpointObserver);
   private toastr = inject(ToastrService);
   public contactService = inject(ContactService);
+  private cdr = inject(ChangeDetectorRef);
 
   /**
    * Initialise le composant.
@@ -67,7 +69,13 @@ export class Contacts implements OnInit {
    */
 
   ngOnInit(): void {
-    this.checkScreen();
+   this.breakpointObserver
+  .observe(['(max-width: 576px)', '(max-width: 768px)'])
+  .subscribe(result => {
+    this.isMobile = result.breakpoints['(max-width: 576px)'];
+    this.isTablet = result.breakpoints['(max-width: 768px)'] && !this.isMobile;
+    this.cdr.detectChanges();
+  });
 
     this.contactService.contacts$.subscribe((data: Contact[]) => {
       this.contacts = data;
@@ -82,13 +90,7 @@ export class Contacts implements OnInit {
    * Vérifie la taille de l'écran et met à jour les variables isMobile et isTablet.
    * Déclenché au chargement et à chaque redimensionnement de la fenêtre.
    */
-  @HostListener('window:resize')
-  checkScreen() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = window.innerWidth <= 576;
-      this.isTablet = window.innerWidth > 576 && window.innerWidth <= 768;
-    }
-  }
+ 
 
   /**
    * Ouvre la modale pour ajouter un nouveau contact.

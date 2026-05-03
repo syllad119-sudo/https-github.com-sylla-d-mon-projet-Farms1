@@ -4,7 +4,8 @@
       <img src="../../../assets/images/logo-farms.png" alt="Logo de Farms">
     </div>
 <div class="lang" (click)="toggleMenu()">
-  <img [src]="flags[selectedLang]" [alt]="selectedLang">
+  <!-- axe-disable-next-line image-alt -->
+ <img [src]="flags[selectedLang]" [alt]="'Drapeau ' + selectedLang">
   <span>{{ selectedLang }}</span>
   <span class="arrow" [class.open]="isOpen">▼</span>
 

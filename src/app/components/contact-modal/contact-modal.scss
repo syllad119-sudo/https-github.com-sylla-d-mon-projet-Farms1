@@ -176,3 +176,44 @@
     min-height: 60px !important;
   }
 }
+
+// ─── LANGUE ────────────────────────────────────────────
+.langue-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .langue-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+
+    &:hover {
+      background: #f0f7eb;
+      border-color: #8dc63f;
+    }
+
+    input[type="radio"] {
+      accent-color: #8dc63f;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    span {
+      font-size: 14px;
+      color: #333;
+    }
+  }
+}
