@@ -1,0 +1,15 @@
+{
+  "NOUVEAU_CONTACT": "Novo contato",
+  "SOCIETE": "Empresa",
+  "NOM": "Sobrenome",
+  "PRENOM": "Nome",
+  "EMAIL": "Email",
+  "TELEPHONE": "Telefone",
+  "PAYS": "País",
+  "COMMENTAIRE": "Comentário",
+  "ANNULER": "Cancelar",
+  "VALIDER": "Validar",
+  "LANGUE": "Idioma preferido",
+  "VOS_INFOS": "Suas informações",
+  "VOS_BESOINS": "Suas necessidades"
+}

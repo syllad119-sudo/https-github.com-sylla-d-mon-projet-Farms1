@@ -6,6 +6,7 @@ import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
 import { Contact } from '../../models/contact.model';
 import { ContactForm } from '../../models/contactForm.model';
 import { SelectionBesoinsComponent } from '../selection-besoins/selection-besoins';
+import { TranslateModule } from '@ngx-translate/core';
 /**
  * Composant modal de formulaire contact.
  * Permet d'ajouter un nouveau contact ou de modifier un contact existant.
@@ -14,8 +15,7 @@ import { SelectionBesoinsComponent } from '../selection-besoins/selection-besoin
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, KENDO_BUTTONS, KENDO_INPUTS, SelectionBesoinsComponent],
-  templateUrl: './contact-modal.html',
+imports: [CommonModule, ReactiveFormsModule, KENDO_BUTTONS, KENDO_INPUTS, SelectionBesoinsComponent, TranslateModule],  templateUrl: './contact-modal.html',
   styleUrl: './contact-modal.scss',
 })
 export class ContactComponent implements OnInit {

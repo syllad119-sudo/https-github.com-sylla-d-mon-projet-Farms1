@@ -134,6 +134,21 @@
       "pays": "Italie",
       "commentaire": "Producteur local, cherche débouchés à l'export.",
       "id": "15"
+    },
+    {
+      "societe": "hello",
+      "nom": "hello",
+      "prenom": "hello",
+      "email": "sylladavid007@yahoo.fr",
+      "telephone": "0782850797",
+      "pays": "France",
+      "langue": "EN",
+      "besoins": [
+        "Contrôle de la production ",
+        "Fiabilité des informations "
+      ],
+      "commentaire": "cooucou donne moi des infos ? ",
+      "id": "_TEYDaj6OrY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
