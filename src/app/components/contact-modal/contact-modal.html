@@ -2,8 +2,7 @@
   <div class="form-content">
     <form [formGroup]="contactForm" (ngSubmit)="handleSubmit()">
 
-<h2>{{ 'VOS_INFOS' | translate }}</h2>
-      <div class="form-group">
+<h2>{{ 'VOS_INFOS' | translate }} <span class="date-defaut">{{ dateAujourdhui }}</span></h2> <div class="form-group">
         <input type="text" formControlName="societe" [placeholder]="'SOCIETE' | translate" />
         @if (contactForm.get('societe')?.invalid && contactForm.get('societe')?.touched) {
           <span>Société requise</span>
@@ -44,14 +43,15 @@
           <span>Pays requis</span>
         }
       </div>
-
-   <div class="form-group langue-group">
-  <h2>{{ 'LANGUE PREFEREE' | translate }}</h2>
-  <label class="langue-option" *ngFor="let lang of langues">
-    <input type="radio" formControlName="langue" [value]="lang.code" />
-    <!-- axe-disable-next-line image-alt -->
-<img [src]="lang.flag" alt="drapeau" />    <span>{{ lang.label }}</span>
-  </label>
+<div class="form-group langue-group">
+  <h2>{{ 'LANGUE' | translate }}</h2>
+  <div class="langue-options">
+    <label class="langue-option" *ngFor="let lang of langues">
+      <input type="radio" formControlName="langue" [value]="lang.code" />
+      <img [src]="lang.flag" alt="drapeau" />
+      <span>{{ lang.label }}</span>
+    </label>
+  </div>
 </div>
 
       <div class="form-group">

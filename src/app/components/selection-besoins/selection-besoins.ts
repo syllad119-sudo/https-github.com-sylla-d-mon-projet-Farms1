@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 /**
  * Composant de sélection multiple des besoins.
  * Affiche une liste de besoins sous forme de boutons cliquables.
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-selection-besoins',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './selection-besoins.html',
   styleUrl: './selection-besoins.scss'
 })

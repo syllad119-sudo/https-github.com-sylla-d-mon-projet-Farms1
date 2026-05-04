@@ -3,7 +3,7 @@
   "SOCIETE": "Empresa",
   "NOM": "Apellido",
   "PRENOM": "Nombre",
-  "EMAIL": "Email",
+  "EMAIL": "Correo electrónico",
   "TELEPHONE": "Teléfono",
   "PAYS": "País",
   "COMMENTAIRE": "Comentario",
@@ -11,5 +11,17 @@
   "VALIDER": "Validar",
   "LANGUE": "Idioma preferido",
   "VOS_INFOS": "Su información",
-  "VOS_BESOINS": "Sus necesidades"
+  "VOS_BESOINS": "Sus necesidades",
+
+  "BESOIN_CONTROLE_PRODUCTION": "Control de producción",
+  "BESOIN_FIABILITE": "Fiabilidad de la información",
+  "BESOIN_PRECISION": "Precisión de la información",
+  "BESOIN_MALADIES": "Enfermedades",
+  "BESOIN_MAIN_OEUVRE": "Gestión de mano de obra",
+  "BESOIN_PREDICTIONS": "Predicciones de cosecha",
+  "BESOIN_TRACABILITE": "Trazabilidad",
+  "BESOIN_VOLS_PERTES": "Robos y pérdidas",
+  "BESOIN_PRODUCTIVITE": "Rendimiento productivo",
+  "BESOIN_COUTS": "Control de costes",
+  "BESOIN_PARCELLES": "Gestión de parcelas"
 }

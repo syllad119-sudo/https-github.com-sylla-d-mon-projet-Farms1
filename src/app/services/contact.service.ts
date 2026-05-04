@@ -68,10 +68,10 @@ export class ContactService {
   updateContact(id: string, form: ContactForm): Observable<Contact> {
     return this.http.put<Contact>(`${this.apiUrl}/${id}`, form).pipe(
       tap(updated => {
-        const current = this.contactsSubject.getValue();
-        const index = current.findIndex(c => c.id === id);
-        current[index] = updated;
-        this.contactsSubject.next([...current]); // met à jour sans recharger
+      const current = this.contactsSubject.getValue();
+      const index = current.findIndex(c => c.id === id);
+      const updatedList = current.map(c => c.id === id ? updated : c);
+      this.contactsSubject.next(updatedList);
       })
     );
   }

@@ -178,42 +178,44 @@
 
 // ─── LANGUE
 .langue-group {
+  h2 {
+    margin-bottom: 8px;
+  }
+}
+
+.langue-options {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-  .langue-option {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+.langue-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+
+  input[type="radio"] {
     cursor: pointer;
-    flex: 1;
-    transition: border-color 0.2s, background 0.2s;
-
-    &:hover {
-      background: #f0f7eb;
-      border-color: #8dc63f;
-    }
-
-    input[type="radio"] {
-      accent-color: #8dc63f;
-      width: 14px;
-      height: 14px;
-      margin: 0;
-    }
-
-    img {
-      width: 18px;
-      height: 18px;
-      object-fit: contain;
-    }
-
-    span {
-      font-size: 12px;
-      color: #333;
-    }
   }
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  span {
+    font-size: 0.85rem;
+  }
+}
+
+// ─── DATE PAR DÉFAUT
+.date-defaut {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: normal;
+  margin-left: 10px;
 }

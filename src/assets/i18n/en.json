@@ -11,5 +11,17 @@
   "VALIDER": "Validate",
   "LANGUE": "Preferred language",
   "VOS_INFOS": "Your information",
-  "VOS_BESOINS": "Your needs"
+  "VOS_BESOINS": "Your needs",
+
+  "BESOIN_CONTROLE_PRODUCTION": "Production control",
+  "BESOIN_FIABILITE": "Information reliability",
+  "BESOIN_PRECISION": "Information accuracy",
+  "BESOIN_MALADIES": "Diseases",
+  "BESOIN_MAIN_OEUVRE": "Workforce management",
+  "BESOIN_PREDICTIONS": "Harvest predictions",
+  "BESOIN_TRACABILITE": "Traceability",
+  "BESOIN_VOLS_PERTES": "Theft & Losses",
+  "BESOIN_PRODUCTIVITE": "Productivity performance",
+  "BESOIN_COUTS": "Cost management",
+  "BESOIN_PARCELLES": "Plot management"
 }

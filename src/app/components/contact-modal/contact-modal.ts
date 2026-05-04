@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { KENDO_INPUTS } from '@progress/kendo-angular-inputs';
@@ -6,7 +6,10 @@ import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
 import { Contact } from '../../models/contact.model';
 import { ContactForm } from '../../models/contactForm.model';
 import { SelectionBesoinsComponent } from '../selection-besoins/selection-besoins';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+
+
+
 /**
  * Composant modal de formulaire contact.
  * Permet d'ajouter un nouveau contact ou de modifier un contact existant.
@@ -34,17 +37,17 @@ export class ContactComponent implements OnInit {
 
 /** Liste de tous les besoins disponibles affichés dans le composant de sélection. */
   besoinsDisponibles: string[] = [
-    'Contrôle de la production ',
-    'Fiabilité des informations ',
-    'Précision des informations ',
-    'Maladies ',
-    'Gestion de la main d\'œuvre',
-    'Prédictions des récoltes ',
-    'Traçabilité ',
-    'Vols & Pertes ',
-    'Productivité performance ',
-    'Maîtrise des coûts ',
-    'Gestion des parcelles ',
+    'BESOIN_CONTROLE_PRODUCTION',
+    'BESOIN_FIABILITE',
+    'BESOIN_PRECISION',
+    'BESOIN_MALADIES',
+    'BESOIN_MAIN_OEUVRE',
+    'BESOIN_PREDICTIONS',
+    'BESOIN_TRACABILITE',
+    'BESOIN_VOLS_PERTES',
+    'BESOIN_PRODUCTIVITE',
+    'BESOIN_COUTS',
+    'BESOIN_PARCELLES',
   ];
 
    /** Liste des besoins actuellement sélectionnés par l'utilisateur. */
@@ -67,7 +70,24 @@ export class ContactComponent implements OnInit {
   { code: 'PT', label: 'Portugais', flag: '../../../assets/images/bresil.png' },
 ];
 
+
+
+dateAujourdhui: string = new Date().toLocaleDateString('fr-FR', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric'
+});
+
+private translate = inject<TranslateService>(TranslateService);
+private cdr = inject(ChangeDetectorRef);
+
+
   ngOnInit(): void {
+   this.translate.onLangChange.subscribe(() => {
+  this.cdr.detectChanges();
+});
+
+
     this.contactForm = new FormGroup({
       societe:     new FormControl(this.contact?.societe ?? '',     [Validators.required, Validators.minLength(2)]),
       nom:         new FormControl(this.contact?.nom ?? '',         [Validators.required, Validators.minLength(2)]),
