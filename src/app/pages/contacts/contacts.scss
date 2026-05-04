@@ -190,3 +190,36 @@ body {
     margin: 0;
   }
 }
+
+// ─── BORDURES GRID ─────────────────────────────────────
+::ng-deep kendo-grid {
+
+  .k-grid-header th {
+    border-right: 1px solid rgba(255,255,255,0.4) !important;
+    border-left: none !important;
+  }
+
+  .k-grid-header th:last-child {
+    border-right: none !important;
+  }
+
+  .k-grid-table td {
+    border-right: 1px solid #e0e0e0 !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    border-left: none !important;
+    border-top: none !important;
+  }
+
+  .k-grid-table td:last-child {
+    border-right: none !important;
+  }
+
+  // Lignes alternées
+  .k-grid-table tr:nth-child(odd) td {
+    background-color: #ffffff !important;
+  }
+
+  .k-grid-table tr:nth-child(even) td {
+    background-color: #f5f5f5 !important;
+  }
+}
