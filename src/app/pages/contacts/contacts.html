@@ -18,7 +18,18 @@
     [autoSize]="true"
   >
 
-  <kendo-grid-excel fileName="contacts-farms-{{ currentDate }}.xlsx"></kendo-grid-excel>
+  <kendo-grid-excel fileName="contacts-farms-{{ currentDate }}.xlsx"
+   [fetchData]="allDataForExcel">
+<kendo-excelexport-column field="societe"     title="Société"></kendo-excelexport-column>
+  <kendo-excelexport-column field="nom"         title="Nom"></kendo-excelexport-column>
+  <kendo-excelexport-column field="prenom"      title="Prénom"></kendo-excelexport-column>
+  <kendo-excelexport-column field="email"       title="Email"></kendo-excelexport-column>
+  <kendo-excelexport-column field="telephone"   title="Téléphone"></kendo-excelexport-column>
+  <kendo-excelexport-column field="pays"        title="Pays"></kendo-excelexport-column>
+  <kendo-excelexport-column field="langue"      title="Langue"></kendo-excelexport-column>
+  <kendo-excelexport-column field="besoins"     title="Besoins"></kendo-excelexport-column>
+  <kendo-excelexport-column field="commentaire" title="Commentaire"></kendo-excelexport-column>
+</kendo-grid-excel>
 
     <kendo-grid-column field="societe" title="Société" [width]="60" [hidden]="false">
     </kendo-grid-column>

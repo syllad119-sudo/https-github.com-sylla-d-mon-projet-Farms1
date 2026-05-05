@@ -15,6 +15,9 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 import { KENDO_GRID, EditEvent, RemoveEvent, ExcelModule, GridComponent } from '@progress/kendo-angular-grid';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+import { take } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-contacts',
@@ -27,6 +30,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
     ReactiveFormsModule,
     KENDO_DIALOGS,
     ContactComponent,
+    ExcelExportModule,
   ],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
@@ -58,10 +62,27 @@ get dialogWidth(): number {
   isConfirmEditDialogOpen = false;
   pendingEditForm: ContactForm | null = null;
 
-private breakpointObserver = inject(BreakpointObserver);
+ private breakpointObserver = inject(BreakpointObserver);
   private toastr = inject(ToastrService);
   public contactService = inject(ContactService);
   private cdr = inject(ChangeDetectorRef);
+
+  get contactsForExcel() {
+  return this.contacts.map(c => ({
+    ...c,
+    besoins: (c.besoins ?? []).join(', ')
+  }));
+}
+  
+  allDataForExcel = () => {
+  return of({
+    data: this.contacts.map(c => ({
+      ...c,
+      besoins: (c.besoins ?? []).join(', ')
+    }))
+  });
+}
+
 
   /**
    * Initialise le composant.
@@ -198,6 +219,10 @@ private breakpointObserver = inject(BreakpointObserver);
    */
  telechargerExcel() {
   this.currentDate = dayjs().tz('Europe/Paris').format('DD-MM-YYYY');
-  this.grid.saveAsExcel();
-}
+
+  // Passer tous les contacts (pas seulement ceux affichés dans la grid)
+  this.contactService.contacts$.pipe(take(1)).subscribe(contacts => {
+    this.grid.saveAsExcel();
+  });
+ }
 }
