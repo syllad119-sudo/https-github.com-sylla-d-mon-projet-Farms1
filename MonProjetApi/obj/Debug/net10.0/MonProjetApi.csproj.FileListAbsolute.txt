@@ -161,3 +161,4 @@ C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Deb
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\BCrypt-Net-Next.dll

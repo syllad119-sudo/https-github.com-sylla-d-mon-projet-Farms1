@@ -31,6 +31,7 @@ public async Task<ActionResult<Contact>> CreateContact(Contact contact)
     return CreatedAtAction(nameof(GetContacts), new { id = contact.Id }, contact);
 } 
 
+
 [HttpDelete("{id}")]
 public async Task<IActionResult> DeleteContact(int id)
 {
@@ -45,6 +46,37 @@ public async Task<IActionResult> DeleteContact(int id)
 
     return NoContent();
 }
-}
 
-  
+ [HttpPut("{id}")]
+public async Task<IActionResult> UpdateContact(int id, Contact contact)
+{
+    if (id != contact.Id)
+    {
+        return BadRequest();
+    }
+
+    _context.Entry(contact).State = EntityState.Modified;
+
+    try
+    {
+        await _context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!ContactExists(id))
+        {
+            return NotFound();
+        }
+        else
+        {
+            throw;
+        }
+    }
+
+    return NoContent();
+}
+private bool ContactExists(int id)
+{
+    return _context.Contacts.Any(e => e.Id == id);
+}
+}
