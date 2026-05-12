@@ -24,13 +24,26 @@ public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
 }      
 
 [HttpPost]
-public async Task<ActionResult<Contact>> CreateContact(Contact contact)
+public async Task<IActionResult> CreateContact([FromBody] ContactForm form)
 {
+    var contact = new Contact
+    {
+        Societe = form.Societe,
+        Nom = form.Nom,
+        Prenom = form.Prenom,
+        Email = form.Email,
+        Telephone = form.Telephone,
+        Pays = form.Pays,
+        Langue = form.Langue,
+        Besoins = form.Besoins,
+        Commentaire = form.Commentaire,
+        DateCreation = DateTime.Now
+    };
+
     _context.Contacts.Add(contact);
     await _context.SaveChangesAsync();
-    return CreatedAtAction(nameof(GetContacts), new { id = contact.Id }, contact);
-} 
-
+    return Ok(contact);
+}
 
 [HttpDelete("{id}")]
 public async Task<IActionResult> DeleteContact(int id)
@@ -48,32 +61,23 @@ public async Task<IActionResult> DeleteContact(int id)
 }
 
  [HttpPut("{id}")]
-public async Task<IActionResult> UpdateContact(int id, Contact contact)
+public async Task<IActionResult> UpdateContact(int id, [FromBody] ContactForm form)
 {
-    if (id != contact.Id)
-    {
-        return BadRequest();
-    }
+    var contact = await _context.Contacts.FindAsync(id);
+    if (contact == null) return NotFound();
 
-    _context.Entry(contact).State = EntityState.Modified;
+    contact.Societe = form.Societe;
+    contact.Nom = form.Nom;
+    contact.Prenom = form.Prenom;
+    contact.Email = form.Email;
+    contact.Telephone = form.Telephone;
+    contact.Pays = form.Pays;
+    contact.Langue = form.Langue;
+    contact.Besoins = form.Besoins;
+    contact.Commentaire = form.Commentaire;
 
-    try
-    {
-        await _context.SaveChangesAsync();
-    }
-    catch (DbUpdateConcurrencyException)
-    {
-        if (!ContactExists(id))
-        {
-            return NotFound();
-        }
-        else
-        {
-            throw;
-        }
-    }
-
-    return NoContent();
+    await _context.SaveChangesAsync();
+    return Ok(contact);
 }
 private bool ContactExists(int id)
 {

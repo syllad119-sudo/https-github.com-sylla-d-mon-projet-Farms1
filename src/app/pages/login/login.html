@@ -1,28 +1,28 @@
 <div class="login-page">
   <div class="login-card">
 
-   <div class="logo">
-  <span class="logo-text">Forms</span>
-  <span class="logo-slash">//</span>
-  <span class="logo-text">CUSTOMERS</span>
-</div>
+    <div class="logo">
+      <span class="logo-text">Forms</span>
+      <span class="logo-slash">//</span>
+      <span class="logo-text">CUSTOMERS</span>
+    </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
-        <label for="email"></label>
+        <label for="username"></label>
         <div class="input-wrapper">
           <img src="../../../assets/id.png" alt="user" class="input-icon">
           <input
-            id="email"
-            type="email"
-            formControlName="email"
+            id="username"
+            type="text"
+            formControlName="username"
             placeholder="Identifiant"
-            [class.input-error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            [class.input-error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
           />
         </div>
-        <span class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-          Email invalide
+        <span class="error" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          Identifiant obligatoire
         </span>
       </div>
 

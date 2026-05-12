@@ -1,6 +1,6 @@
 // DONNEES RESUES
 export interface Contact {
-  id: string;
+  id: number;
   societe: string;
   nom: string;
   prenom: string;

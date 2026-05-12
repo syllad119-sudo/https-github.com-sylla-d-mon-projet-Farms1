@@ -16,7 +16,7 @@ public class AuthController : ControllerBase
         _context = context;
     }
 
-    [HttpPost("loginDto")]
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto login)
     {
         var user = await _context.Users
@@ -34,7 +34,7 @@ public class AuthController : ControllerBase
             return Unauthorized("Mot de passe incorrect.");
         }
 
-        return Ok("Connexion réussie.");
+        return Ok(new { message = "Connexion réussie" });
     }
-
+    
 }

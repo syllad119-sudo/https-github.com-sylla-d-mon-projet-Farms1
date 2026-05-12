@@ -5,68 +5,40 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Service gérant l'authentification de l'utilisateur.
- * Charge les données utilisateur depuis un fichier JSON local
- * et expose les méthodes de construction du formulaire et de vérification des identifiants.
+ * Communique avec l'API backend pour vérifier les identifiants.
  */
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  /** Données utilisateur chargées depuis le fichier JSON. */
-  userData!: any;
-  /**
-   * Injecte le service HttpClient et charge les données utilisateur au démarrage.
-   * @param http - Service HTTP Angular pour effectuer les requêtes.
-   */
-  constructor(private http: HttpClient) {
-    this.getUser().subscribe((data) => {
-      this.userData = data;
-      console.log('JSON chargé :', this.userData);
-    });
-  }
-  /**
-   * Récupère les données utilisateur depuis le fichier JSON local.
-   * @returns Un Observable contenant les données utilisateur.
-   */
-  private getUser(): Observable<any> {
-    return this.http.get('assets/user.json');
-  }
+  /** URL de base de l'API d'authentification. */
+  private apiUrl = 'http://localhost:5143/api/auth/login';
 
   /**
-   * @public
-   * @name buildForm
-   * @memberof LoginService
-   * @returns retounr un formGroup
+   * Injecte le service HttpClient pour effectuer les requêtes HTTP.
+   * @param http - Service HTTP Angular.
    */
+  constructor(private http: HttpClient) {}
 
   /**
    * Construit et retourne le formulaire réactif de connexion
-   * avec les validations requises sur l'email et le mot de passe.
-   * @returns Un FormGroup contenant les champs email et password.
+   * avec les validations requises sur le nom d'utilisateur et le mot de passe.
+   * @returns Un FormGroup contenant les champs username et password.
    */
   public buildForm(): FormGroup {
     return new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
   /**
-   * Vérifie si les identifiants fournis correspondent à un utilisateur existant.
-   * Recherche dans le tableau d'utilisateurs chargé depuis le JSON.
-   * @param email - L'adresse email saisie par l'utilisateur.
-   * @param password - Le mot de passe saisi par l'utilisateur.
-   * @returns `true` si les identifiants sont valides, `false` sinon.
+   * Envoie les identifiants au backend pour vérification.
+   * @param username - Le nom d'utilisateur saisi.
+   * @param password - Le mot de passe saisi.
+   * @returns Un Observable contenant la réponse du backend.
    */
-  public checkLogin(email: string, password: string): boolean {
-    if (!this.userData || !this.userData.user) {
-      console.error('userData non chargé');
-      return false;
-    }
-
-    // On cherche dans le tableau
-    const found = this.userData.user.find((u: any) => u.email === email && u.password === password);
-
-    return !!found;
+  public login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl, { username, password });
   }
 }

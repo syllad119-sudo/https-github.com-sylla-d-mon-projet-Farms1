@@ -13,7 +13,7 @@ import { ContactForm } from '../models/contactForm.model';
 @Injectable({ providedIn: 'root' })
 export class ContactService {
  /** URL de base de l'API des contacts. */
-  private apiUrl = 'http://localhost:3000/contacts';
+  private apiUrl = 'http://localhost:5143/api/contact';
 
  /**
    * BehaviorSubject contenant la liste des contacts.
@@ -65,7 +65,7 @@ export class ContactService {
    * @param form - Les nouvelles données du formulaire.
    * @returns Un Observable contenant le contact mis à jour.
    */
-  updateContact(id: string, form: ContactForm): Observable<Contact> {
+  updateContact(id: number, form: ContactForm): Observable<Contact> {
     return this.http.put<Contact>(`${this.apiUrl}/${id}`, form).pipe(
       tap(updated => {
       const current = this.contactsSubject.getValue();
@@ -83,7 +83,7 @@ export class ContactService {
    * @param id - L'identifiant unique du contact à supprimer.
    * @returns Un Observable vide signalant la fin de la suppression.
    */
-  removeContact(id: string): Observable<void> {
+  removeContact(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
       tap(() => {
         const current = this.contactsSubject.getValue();
