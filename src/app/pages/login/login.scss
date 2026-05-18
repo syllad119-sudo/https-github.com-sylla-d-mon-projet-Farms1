@@ -9,9 +9,16 @@ $bg-page: #f0f4f0;
 $border: #ddd;
 $white: #ffffff;
 
+
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;}
+
 // Page entière
 .login-page {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;

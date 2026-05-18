@@ -13,8 +13,7 @@ import { ContactForm } from '../models/contactForm.model';
 @Injectable({ providedIn: 'root' })
 export class ContactService {
  /** URL de base de l'API des contacts. */
-  private apiUrl = 'http://localhost:5143/api/contact';
-
+private apiUrl = 'http://localhost:5143/api/contact';
  /**
    * BehaviorSubject contenant la liste des contacts.
    * Permet une mise à jour automatique dans tous les composants abonnés.

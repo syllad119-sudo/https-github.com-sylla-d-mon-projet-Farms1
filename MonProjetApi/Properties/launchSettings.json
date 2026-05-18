@@ -1,5 +1,6 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
+  "defaultLaunchProfileName": "http",
   "profiles": {
     "http": {
       "commandName": "Project",

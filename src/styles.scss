@@ -1,3 +1,4 @@
+
 /* You can add global styles to this file, and also import other style files */
 @use 'ngx-toastr/toastr';
 * {
@@ -8,8 +9,14 @@
 
 
 html, body {
-  width: 100%;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
+}
+
+app-root {
+  display: block;
+  height: 100%;
+  overflow: hidden;
 }
 
 
@@ -107,4 +114,8 @@ kendo-grid {
   color: #e74c3c !important;
   border: none !important;
   background: transparent !important;
+}
+app-root {
+  display: block;
+  height: 100%;
 }
