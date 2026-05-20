@@ -53,9 +53,10 @@ export class Login implements OnInit {
 
     this.loginService.login(username, password).subscribe({
       next: () => {
-        this.toastr.success('Connexion réussie', 'Bienvenue 👋');
-        this.router.navigate(['/contacts']);
-      },
+  localStorage.setItem('isLoggedIn', 'true');
+  this.toastr.success('Connexion réussie', 'Bienvenue 👋');
+  this.router.navigate(['/contacts']);
+},
       error: () => {
         this.toastr.error('Identifiant ou mot de passe incorrect');
       }

@@ -1,28 +1,29 @@
 using Microsoft.EntityFrameworkCore;
 using MonProjetApi.Data;
+using MonProjetApi.Managers;
+using MonProjetApi.Managers.Interfaces;
+using MonProjetApi.Middlewares;
+using MonProjetApi.Repositories;
+using MonProjetApi.Repositories.Interfaces;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Controllers + CamelCase JSON
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     });
 
-// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Entity Framework Core + SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
 
-// CORS pour Angular
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
@@ -32,7 +33,18 @@ builder.Services.AddCors(options =>
     );
 });
 
+//  Repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+
+//  Managers
+builder.Services.AddScoped<IAuthManager, AuthManager>();
+builder.Services.AddScoped<IContactManager, ContactManager>();
+
 var app = builder.Build();
+
+// Middleware global d'exceptions — en premier
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
