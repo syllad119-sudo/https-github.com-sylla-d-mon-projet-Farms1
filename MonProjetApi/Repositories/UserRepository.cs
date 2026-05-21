@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MonProjetApi.Repositories;
 
+// Accès aux données des utilisateurs via EF Core
 public class UserRepository : IUserRepository
 {
     private readonly AppDbContext _context;
@@ -14,9 +15,17 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
+    // Retourne null si l'utilisateur n'existe pas
     public async Task<User?> GetByUsernameAsync(string username)
     {
-        return await _context.Users
-            .FirstOrDefaultAsync(u => u.Username == username);
+        try
+        {
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.Username == username);
+        }
+        catch (DbUpdateException ex)
+        {
+            throw new Exception($"Erreur lors de la récupération de l'utilisateur {username}.", ex);
+        }
     }
 }

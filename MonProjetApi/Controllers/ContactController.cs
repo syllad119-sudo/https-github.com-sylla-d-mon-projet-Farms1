@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MonProjetApi.Managers.Interfaces;
 using MonProjetApi.Models;
 
 namespace MonProjetApi.Controllers;
 
+[Authorize] // ← bloque toutes les requêtes sans token
 [ApiController]
 [Route("api/[controller]")]
 public class ContactController : ControllerBase

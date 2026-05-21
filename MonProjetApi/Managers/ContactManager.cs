@@ -4,6 +4,7 @@ using MonProjetApi.Repositories.Interfaces;
 
 namespace MonProjetApi.Managers;
 
+// Logique métier des contacts
 public class ContactManager : IContactManager
 {
     private readonly IContactRepository _contactRepository;
@@ -18,6 +19,7 @@ public class ContactManager : IContactManager
         return await _contactRepository.GetAllAsync();
     }
 
+    // Mappe le formulaire vers le modèle Contact avant de sauvegarder
     public async Task AddAsync(ContactForm form)
     {
         var contact = new Contact
@@ -36,6 +38,7 @@ public class ContactManager : IContactManager
         await _contactRepository.AddAsync(contact);
     }
 
+    // Retourne false si le contact n'existe pas
     public async Task<bool> UpdateAsync(int id, ContactForm form)
     {
         var contact = await _contactRepository.GetByIdAsync(id);
@@ -55,6 +58,7 @@ public class ContactManager : IContactManager
         return true;
     }
 
+    // Retourne false si le contact n'existe pas
     public async Task<bool> DeleteAsync(int id)
     {
         var contact = await _contactRepository.GetByIdAsync(id);

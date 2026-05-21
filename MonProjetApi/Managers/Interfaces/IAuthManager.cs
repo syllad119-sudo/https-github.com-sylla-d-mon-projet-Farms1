@@ -4,5 +4,5 @@ namespace MonProjetApi.Managers.Interfaces;
 
 public interface IAuthManager
 {
-    Task<bool> LoginAsync(LoginDto login);
+    Task<string?> LoginAsync(LoginDto login);
 }

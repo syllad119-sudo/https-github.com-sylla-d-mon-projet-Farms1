@@ -19,7 +19,6 @@ C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Deb
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Azure.Identity.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Humanizer.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Microsoft.CodeAnalysis.dll
@@ -162,3 +161,5 @@ C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Deb
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\BCrypt-Net-Next.dll
+C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\sylla-d\https-github.com-sylla-d-mon-projet-Farms1\MonProjetApi\bin\Debug\net10.0\Scalar.AspNetCore.dll
