@@ -5,7 +5,7 @@ namespace MonProjetApi.Managers.Interfaces;
 public interface IContactManager
 {
     Task<List<Contact>> GetAllAsync();
-    Task AddAsync(ContactForm form);
-    Task<bool> UpdateAsync(int id, ContactForm form);
+    Task<Contact> AddAsync(ContactForm form);
+    Task<Contact?> UpdateAsync(int id, ContactForm form);
     Task<bool> DeleteAsync(int id);
 }

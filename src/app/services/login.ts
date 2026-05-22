@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
@@ -33,12 +33,24 @@ export class LoginService {
   }
 
   /**
-   * Envoie les identifiants au backend pour vérification.
+   * Envoie les identifiants au backend et sauvegarde le token JWT reçu.
    * @param username - Le nom d'utilisateur saisi.
    * @param password - Le mot de passe saisi.
    * @returns Un Observable contenant la réponse du backend.
    */
   public login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { username, password });
+    return this.http.post<any>(this.apiUrl, { username, password }).pipe(
+      // Sauvegarde le token dans localStorage après connexion réussie
+      tap(response => {
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+        }
+      })
+    );
+  }
+
+  // Supprime le token au logout
+  public logout(): void {
+    localStorage.removeItem('token');
   }
 }

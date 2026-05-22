@@ -20,7 +20,7 @@ public class ContactManager : IContactManager
     }
 
     // Mappe le formulaire vers le modèle Contact avant de sauvegarder
-    public async Task AddAsync(ContactForm form)
+    public async Task<Contact> AddAsync(ContactForm form)
     {
         var contact = new Contact
         {
@@ -36,13 +36,14 @@ public class ContactManager : IContactManager
             DateCreation = DateTime.Now
         };
         await _contactRepository.AddAsync(contact);
+        return contact;
     }
 
-    // Retourne false si le contact n'existe pas
-    public async Task<bool> UpdateAsync(int id, ContactForm form)
+    // Retourne null si le contact n'existe pas
+    public async Task<Contact?> UpdateAsync(int id, ContactForm form)
     {
         var contact = await _contactRepository.GetByIdAsync(id);
-        if (contact == null) return false;
+        if (contact == null) return null;
 
         contact.Societe = form.Societe;
         contact.Nom = form.Nom;
@@ -55,7 +56,7 @@ public class ContactManager : IContactManager
         contact.Commentaire = form.Commentaire;
 
         await _contactRepository.UpdateAsync(contact);
-        return true;
+        return contact;
     }
 
     // Retourne false si le contact n'existe pas

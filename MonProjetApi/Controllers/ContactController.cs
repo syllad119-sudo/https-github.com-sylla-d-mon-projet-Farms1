@@ -5,7 +5,7 @@ using MonProjetApi.Models;
 
 namespace MonProjetApi.Controllers;
 
-[Authorize] // ← bloque toutes les requêtes sans token
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ContactController : ControllerBase
@@ -27,16 +27,18 @@ public class ContactController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateContact([FromBody] ContactForm form)
     {
-        await _contactManager.AddAsync(form);
-        return Ok();
+        // Retourne le contact créé pour qu'Angular l'ajoute correctement
+        var contact = await _contactManager.AddAsync(form);
+        return Ok(contact);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateContact(int id, [FromBody] ContactForm form)
     {
-        var success = await _contactManager.UpdateAsync(id, form);
-        if (!success) return NotFound();
-        return Ok();
+        // Retourne le contact modifié pour qu'Angular mette à jour le tableau
+        var contact = await _contactManager.UpdateAsync(id, form);
+        if (contact == null) return NotFound();
+        return Ok(contact);
     }
 
     [HttpDelete("{id}")]
