@@ -18,7 +18,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import { take } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-contacts',
   standalone: true,
@@ -66,7 +66,12 @@ get dialogWidth(): number {
   private toastr = inject(ToastrService);
   public contactService = inject(ContactService);
   private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router);
 
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
   get contactsForExcel() {
   return this.contacts.map(c => ({
     ...c,

@@ -93,6 +93,22 @@ body {
   }
 }
 
+.btn-logout {
+  background: white;
+  color: black;
+  font-weight: 600;
+  font-size: 13px;
+  border: 2px solid #8dc63f;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  margin-left: 12px;
+
+  &:hover {
+    background-color: #fdecea;
+  }
+}
+
 @media (max-width: 576px) {
   .header {
     padding: 10px 16px;

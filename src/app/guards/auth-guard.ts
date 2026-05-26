@@ -2,17 +2,13 @@ import { CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-/**
- * Guard de protection des routes.
- * Vérifie si l'administrateur est connecté avant d'autoriser l'accès.
- * Redirige vers /login si non connecté.
- */
+// Vérifie si un token JWT est présent avant d'autoriser l'accès
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const token = localStorage.getItem('token');
   
-  if (isLoggedIn === 'true') {
+  if (token) {
     return true;
   } else {
     router.navigate(['/login']);

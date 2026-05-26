@@ -24,5 +24,11 @@
         </button>
       </div>
     </div>
+<!-- Bouton logout — visible uniquement si connecté -->
+@if (isLoggedIn) {
+  <button class="btn-logout" (click)="logout()">
+    Déconnexion
+  </button>
+}
     </header>
 </div>

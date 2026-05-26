@@ -1,6 +1,7 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,19 @@ export class Header {
   /** Code de la langue actuellement sélectionnée. */
   selectedLang = 'FR';
 
+  // Vérifie si l'utilisateur est connecté
+get isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+}
+
   private translate = inject(TranslateService);
   private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router);
+//Deconnecte L'utilisateur en supprimant le token du localStorage et en redirigeant vers la page de login
+  logout () : void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 
   /**
    * Dictionnaire associant chaque code de langue au chemin de son drapeau.
