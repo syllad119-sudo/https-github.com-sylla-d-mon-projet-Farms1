@@ -41,11 +41,8 @@ builder.Services.AddOpenApi(options =>
     });
 });
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    )
+    options.UseSqlite("Data Source=monprojet.db")
 );
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
@@ -99,5 +96,20 @@ app.UseCors("AllowAngular");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+// Seeder — crée un admin si la base est vide
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    if (!db.Users.Any())
+    {
+        db.Users.Add(new MonProjetApi.Models.User
+        {
+            Username = "admin",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123")
+        });
+        db.SaveChanges();
+    }
+}
 
 app.Run();
