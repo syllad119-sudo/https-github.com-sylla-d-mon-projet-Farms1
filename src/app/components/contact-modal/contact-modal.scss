@@ -136,6 +136,25 @@
     }
   }
 
+  // ─── RESPONSIVE DESKTOP ──────────────────────────────
+@media (min-width: 1025px) {
+  ::ng-deep .k-dialog {
+    max-height: 90vh !important;
+    height: 90vh !important;
+  }
+
+  ::ng-deep .k-dialog-content {
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .form-content {
+    max-height: calc(90vh - 200px) !important;
+    overflow-y: auto !important;
+    min-height: 0 !important;
+  }
+}
+
   // ─── RESPONSIVE MOBILE ───────────────────────────────
   @media (max-width: 576px) {
     padding: 0 16px;
