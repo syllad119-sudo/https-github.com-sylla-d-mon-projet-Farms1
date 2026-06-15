@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start":  "concurrently \"dotnet run --project MonProjetApi\" \"ng serve\"",
+    "start": "concurrently \"dotnet run --project MonProjetApi\" \"ng serve\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -41,6 +41,7 @@
     "@progress/kendo-angular-layout": "23.3.0",
     "@progress/kendo-angular-menu": "23.3.0",
     "@progress/kendo-angular-navigation": "23.3.0",
+    "@progress/kendo-angular-notification": "^24.1.0",
     "@progress/kendo-angular-pager": "23.3.0",
     "@progress/kendo-angular-pdf-export": "23.3.0",
     "@progress/kendo-angular-popup": "23.3.0",
